@@ -14,6 +14,7 @@ alias la='ls -A'
 # git
 alias gf='git fetch -v'
 alias gfu='git fetch upstream -v'
+alias gfo='git fetch origin -v'
 alias ga='git add'
 alias gp='git push'
 alias gd='git diff'
@@ -60,7 +61,7 @@ alias scaffold='script/generate nifty_scaffold'
 alias migrate='rake db:migrate'
 alias rst='touch tmp/restart.txt'
 alias b='bundle exec'
-
+alias onetest='rake TESTOPTS="-n="$NAME"" test'
 
 # other
 alias rsync="rsync --progress"
