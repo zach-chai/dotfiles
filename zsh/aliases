@@ -61,7 +61,6 @@ alias scaffold='script/generate nifty_scaffold'
 alias migrate='rake db:migrate'
 alias rst='touch tmp/restart.txt'
 alias b='bundle exec'
-alias onetest='rake TESTOPTS="-n=$NAME" test'
 
 # other
 alias rsync="rsync --progress"
@@ -75,4 +74,3 @@ alias %=' '
 # todo
 export TODOTXT_DEFAULT_ACTION=ls
 export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'
-alias t='todo.sh -c -d ~/Dropbox/todo/todo.cfg'
