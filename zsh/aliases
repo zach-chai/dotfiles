@@ -47,7 +47,7 @@ alias glur='git pull --rebase --stat upstream $(current_branch)'
 alias gupdate='git fetch -v upstream master:master && git push -v origin master:master'
 alias gupbase='git pull -v --rebase --stat --ff-only upstream master:master && git push -v origin master:master'
 alias gpo='git push origin $(current_branch)'
-alias gsetup='git push -u origin $(current_branch)'
+alias gpsetup='git push -u origin $(current_branch)'
 alias gpheroku='git push heroku $(current_branch):master'
 alias ggca='git gc --prune=all'
 
