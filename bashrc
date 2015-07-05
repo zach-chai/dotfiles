@@ -18,3 +18,5 @@ fi
 if [ -f ~/.localrc ]; then
   source ~/.localrc
 fi
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

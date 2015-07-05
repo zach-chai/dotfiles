@@ -57,3 +57,5 @@ fi
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
