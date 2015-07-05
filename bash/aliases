@@ -1,7 +1,24 @@
 . ~/.zsh/aliases
 
+# auto complete mapping for git aliases
+complete -F _git_checkout gco
+
 # changing directory to project
-function ws { cd ~/workspace/$1*; }
+function c { cd ~/workspace/$1*; }
+
+function raket {
+  if [ -n "$1" ]; then
+    rake test TEST=$1;
+  else
+    rake test;
+  fi
+}
+
+function current_branch {
+  if [ -d .git ]; then
+    git rev-parse --abbrev-ref HEAD;
+  fi
+}
 
 # misc
 alias reload='. ~/.bash_profile'
