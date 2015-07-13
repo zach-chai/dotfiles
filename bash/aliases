@@ -2,6 +2,7 @@
 
 # auto complete mapping for git aliases
 complete -F _git_checkout gco
+complete -F _git_branch gb
 
 # changing directory to project
 function c { cd ~/workspace/$1*; }
