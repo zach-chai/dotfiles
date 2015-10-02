@@ -69,6 +69,8 @@ alias rsync="rsync --progress"
 alias rt="ruby -Itest"
 alias zt="zeus tests"
 alias tmux="TERM=screen-256color-bce tmux -2"
+alias d="docker"
+alias dc="docker-compose"
 
 # commands starting with % for pasting from web
 alias %=' '
