@@ -2,10 +2,10 @@
 alias ..='cd ..'
 
 # ls
-if [[ `uname` == 'Linux' ]]; then
-  alias ls="ls -F --color=auto"
-else
+if [[ $OSTYPE = darwin* ]]; then
   alias ls="ls -GF"
+else
+  alias ls="ls -F --color=auto"
 fi
 alias l="ls -lAh"
 alias ll="ls -l"
@@ -15,17 +15,32 @@ alias la='ls -A'
 alias gf='git fetch -v'
 alias gfu='git fetch upstream -v'
 alias gfo='git fetch origin -v'
+
 alias ga='git add'
+
 alias gp='git push'
+
 alias gd='git diff'
 alias gdc='git diff --cached'
+
 alias gca='git commit -a'
+
 alias gco='git checkout'
+alias gcd='git checkout develop'
+alias gcb='git checkout -b'
+
 alias gb='git branch'
+
 alias gs='git status'
+
 alias glog='git log'
-alias gloga='git log --oneline --decorate --color --graph --all'
-alias grb="git rebase"
+alias gloga='git log --graph --decorate --oneline --color --all'
+alias glogd='git log --graph --decorate $(git rev-list -g --all)'
+
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbi='git rebase -i'
 
 alias gc='git commit'
 alias gcm='git commit -m'
@@ -64,13 +79,30 @@ alias migrate='rake db:migrate'
 alias rst='touch tmp/restart.txt'
 alias b='bundle exec'
 
+alias nrake="noglob rake"
+alias rfind='find . -name "*.rb" | xargs grep -n'  # Find ruby file
+
+# docker
+alias d="docker"
+alias dc='docker-compose'
+alias dcr='docker-compose run'
+
 # other
 alias rsync="rsync --progress"
 alias rt="ruby -Itest"
 alias zt="zeus tests"
 alias tmux="TERM=screen-256color-bce tmux -2"
-alias d="docker"
-alias dc="docker-compose"
+
+which dnf > /dev/null
+if [[ $? -eq 0 ]]; then
+  alias ds='dnf search'
+  alias dp='dnf info'
+  alias di='sudo dnf install'
+  alias du='sudo dnf update'
+  alias dr='sudo dnf remove'
+  alias dgi='sudo dnf groupinstall'
+  alias dgr='sudo dnf groupremove'
+fi
 
 # commands starting with % for pasting from web
 alias %=' '
