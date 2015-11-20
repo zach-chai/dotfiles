@@ -3,8 +3,9 @@ require 'erb'
 
 desc "install the dot files into user's home directory"
 task :install, :automated do |t, args|
-  @automated = automated? args
-  replace_all = @automated
+  @automated = automated args
+  replace_all = @automated == 'replace'
+  skip_all = @automated == 'skip'
 
   Dir['*'].each do |file|
     next if %w[Rakefile README.rdoc LICENSE].include? file
@@ -15,8 +16,13 @@ task :install, :automated do |t, args|
       elsif replace_all
         replace_file(file)
       else
-        print "overwrite ~/.#{file.sub('.erb', '')}? [ynaq] "
-        case $stdin.gets.chomp
+        if skip_all
+          choice = 'n'
+        else
+          print "overwrite ~/.#{file.sub('.erb', '')}? [ynaq] "
+          choice = $stdin.gets.chomp
+        end
+        case choice
         when 'a'
           replace_all = true
           replace_file(file)
@@ -56,6 +62,10 @@ def link_file(file)
   end
 end
 
-def automated?(args)
-  args[:automated] && args[:automated].downcase == 'true'
+def automated(args)
+  if args[:automated]
+    args[:automated].downcase
+  else
+    nil
+  end
 end
