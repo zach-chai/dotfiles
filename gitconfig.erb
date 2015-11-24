@@ -6,6 +6,8 @@
 	user = <%= print("GitHub Username: "); STDOUT.flush; STDIN.gets.chomp %>
 	token = <%= print("GitHub API Token: "); STDOUT.flush; STDIN.gets.chomp %>
 <% end %>
+[hub]
+  protocol = ssh
 [color]
 	diff = auto
 	status = auto
