@@ -1,0 +1,13 @@
+docker run \
+    --rm \
+    --privileged \
+    -v /etc/localtime:/etc/localtime:ro \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -e DISPLAY=$DISPLAY \
+    -e DEVUSER=`id -un` \
+    -e DEVGROUP=`id -gn` \
+    -e DEVUSERID=`id -u` \
+    -v ~/.docker-lib:/var/lib/docker \
+    -v ~/.devstore:/root \
+    -v ~/.ssh:/root/.ssh \
+    -ti zachchai/devbox
