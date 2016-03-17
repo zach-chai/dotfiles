@@ -1,10 +1,16 @@
-xhost +
+XSOCK=/tmp/.X11-unix
+XAUTH=/tmp/.docker.xauth
+TIME=/etc/localtime
 
-docker run \
+xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
+
+docker run  \
     --rm \
     --privileged \
-    -v /etc/localtime:/etc/localtime:ro \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v $TIME:$TIME:ro \
+    -v $XSOCK:$XSOCK \
+    -v $XAUTH:$XAUTH \
+    -e XAUTHORITY=$XAUTH \
     -e DISPLAY=$DISPLAY \
     -e DEVUSER=`id -un` \
     -e DEVGROUP=`id -gn` \
@@ -12,7 +18,4 @@ docker run \
     -v ~/.docker-lib:/var/lib/docker \
     -v ~/.devstore:/root \
     -v ~/.ssh:/root/.ssh \
-    -p 3000:3000 \
-    -ti zachchai/devbox
-
-xhost -
+    -ti devbox_dev_box
