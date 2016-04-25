@@ -19,4 +19,4 @@ docker run  \
     -v ~/.devstore:/root \
     -v ~/.ssh:/root/.ssh \
     -p 3000:3000 \
-    -ti devbox_dev_box
+    -ti zachchai/devbox
