@@ -5,7 +5,9 @@ source ~/.bash/config
 source ~/.bash/prompt
 
 # Set up rbenv
-eval "$(rbenv init -)"
+if type "rbenv" > /dev/null; then
+  eval "$(rbenv init -)"
+fi
 
 # Load project configurations
 if [[ -d ~/.projects ]]; then
