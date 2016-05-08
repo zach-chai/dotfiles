@@ -12,6 +12,8 @@ vendor/src
 .rbenv-vars
 log
 tmp
+.byebug_history
+.ruby-version
 
 nb-configuration.xml
 .atom
