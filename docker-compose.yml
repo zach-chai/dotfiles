@@ -1,8 +1,0 @@
-test:
-  build: .
-  volumes:
-    - ".:/home/.dotfiles"
-  volumes_from:
-    - config_cache
-  working_dir: "/home/.dotfiles"
-  command: rake install['skip']
