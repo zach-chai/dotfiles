@@ -3,17 +3,18 @@
 # TODO add an automated version
 
 IGNORE_FILES="LICENSE|README|install.sh|Rakefile|gitconfig.erb"
+TEMPLATE_SUFFIX=.template
 
 function link_file () {
   if [[ $1 == gitconfig.template ]]; then
-    cp ./gitconfig.template ~/.gitconfig
+    echo "generating ~/.gitconfig"
 
     read -p "Enter name " name
     read -p "Enter email " email
     read -p "Enter Github username " user
     read -p "Enter Github token " token
 
-    echo "generating ~/.gitconfig"
+    cp ./gitconfig.template ~/.gitconfig
 
     sed -i -e "s/<replace_name>/$name/g" ~/.gitconfig
     sed -i -e "s/<replace_email>/$email/g" ~/.gitconfig
@@ -34,17 +35,18 @@ replace_all=false
 
 for file in $(ls | grep -vE $IGNORE_FILES)
 do
-  if [ ! -e ~/.$file ]; then
+  home_file=${file%%.template}
+  if [ ! -e ~/.$home_file ]; then
     link_file $file
     continue
   fi
 
-  if cmp -s ./$file ~/.$file; then
+  if cmp -s ./$file ~/.$home_file; then
     echo "identical .$file"
-  elif $replace_all == true; then
+  elif [[ $replace_all == true ]]; then
     replace_file $file
   else
-    read -p "overwrite ~/.$file? [ynaq] " choice
+    read -p "overwrite ~/.$home_file? [ynaq] " choice
     case $choice in
       a )
         replace_all=true
