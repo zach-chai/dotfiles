@@ -8,7 +8,7 @@ task :install, :automated do |t, args|
   skip_all = @automated == 'skip'
 
   Dir['*'].each do |file|
-    next if %w[Rakefile README.rdoc LICENSE].include? file
+    next if %w[Rakefile README.rdoc LICENSE install.sh gitconfig.template].include? file
 
     if File.exist?(File.join(ENV['HOME'], ".#{file.sub('.erb', '')}"))
       if File.identical? file, File.join(ENV['HOME'], ".#{file.sub('.erb', '')}")
