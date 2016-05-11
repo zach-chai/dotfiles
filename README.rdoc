@@ -2,13 +2,13 @@
 
 == Bash Installation
 
-  git clone git@github.com:zach-chai/dotfiles.git .dotfiles
+  git clone https://github.com/zach-chai/dotfiles.git .dotfiles
   cd ~/.dotfiles
   ./install.sh
 
 == Rake Installation
 
-  git clone git@github.com:zach-chai/dotfiles.git .dotfiles
+  git clone https://github.com/zach-chai/dotfiles.git .dotfiles
   cd ~/.dotfiles
   rake install
 
