@@ -86,6 +86,7 @@ alias rfind='find . -name "*.rb" | xargs grep -n'  # Find ruby file
 alias d="docker"
 alias dc='docker-compose'
 alias dcr='docker-compose run --rm'
+alias dm='docker-machine'
 
 # other
 alias rsync="rsync --progress"
