@@ -10,8 +10,8 @@ docker run  \
     -v $XAUTH:$XAUTH \
     -e XAUTHORITY=$XAUTH \
     -v `pwd`:/work \
-    -v `pwd`/.atom:/devhome/.atom \
-    -e DISPLAY=$DISPLAY \
+    -v ${HOME}/.atom:/devhome/.atom \
+    -e DISPLAY \
     -e HOSTUSER=`id -un` \
     -e HOSTGROUP=`id -gn` \
     -e HOSTUSERID=`id -u` \
