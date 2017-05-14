@@ -21,13 +21,20 @@ alias ga='git add'
 alias gp='git push'
 
 alias gd='git diff'
+alias gdm='git diff master'
+alias gdd='git diff develop'
 alias gdc='git diff --cached'
+alias gdcm='git diff --cached master'
+alias gdcd='git diff --cached develop'
 
 alias gca='git commit -a'
 
 alias gco='git checkout'
 alias gcd='git checkout develop'
 alias gcb='git checkout -b'
+alias gcom='git checkout master'
+alias gcod='git checkout develop'
+alias gcob='git checkout -b'
 
 alias gb='git branch'
 
@@ -41,32 +48,35 @@ alias grb='git rebase'
 alias grba='git rebase --abort'
 alias grbc='git rebase --continue'
 alias grbi='git rebase -i'
+alias grbm='git rebase master'
+alias grbd='git rebase develop'
 
 alias gc='git commit'
 alias gcm='git commit -m'
 alias gca='git commit --amend'
 alias gcan='git commit --amend --no-edit'
+
 alias grm='git remote'
+
 alias gr='git reset'
 alias grh='git reset --hard'
 alias grs='git reset --soft'
 alias gpop='git reset --soft HEAD^'
 alias grho='git reset --hard origin/$(current_branch)'
-alias grbm='git rebase master'
-alias gdm='git diff master'
-alias gcom='git checkout master'
-alias gcob='git checkout -b'
+
 alias gl='git pull'
 alias glr='git pull --rebase --stat'
 alias glo='git pull origin $(current_branch)'
 alias glu='git pull upstream $(current_branch)'
 alias glur='git pull --rebase --stat upstream $(current_branch)'
-alias gupdate='git fetch -v upstream master:master && git push -v origin master:master'
-alias gupbase='git pull -v --rebase --stat --ff-only upstream master:master && git push -v origin master:master'
+
 alias gpo='git push origin $(current_branch)'
 alias gpsetup='git push -u origin $(current_branch)'
 alias gpheroku='git push heroku $(current_branch):master'
 alias ggca='git gc --prune=all'
+
+alias gupdate='git fetch -v upstream master:master && git push -v origin master:master'
+alias gupbase='git pull -v --rebase --stat --ff-only upstream master:master && git push -v origin master:master'
 
 # rails
 alias rc='rails console'
