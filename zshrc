@@ -32,11 +32,7 @@ ZSH_THEME="pygmalion"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-if [[ $OSTYPE = darwin* ]]; then
-  plugins=(gitfast bundler docker docker-compose)
-else
-  plugins=(gitfast bundler docker docker-compose)
-fi
+plugins=(gitfast bundler docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -45,11 +41,6 @@ source $ZSH/oh-my-zsh.sh
 . ~/.zsh/config
 . ~/.zsh/aliases
 . ~/.zsh/completion
-
-# Set up rbenv
-if type "rbenv" > /dev/null; then
-  eval "$(rbenv init -)"
-fi
 
 # Load project configurations
 if [[ -d ~/.projects ]]; then
@@ -60,5 +51,3 @@ fi
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
