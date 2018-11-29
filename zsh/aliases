@@ -104,6 +104,7 @@ alias rt="ruby -Itest"
 alias zt="zeus tests"
 alias tmux="TERM=screen-256color-bce tmux -2"
 alias ssh-keygen='ssh-keygen -b 4096'
+alias weather="curl 'wttr.in/~Ottawa?2\&m'"
 
 which dnf > /dev/null
 if [[ $? -eq 0 ]]; then
