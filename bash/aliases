@@ -7,14 +7,6 @@ complete -F _git_branch gb
 # changing directory to project
 function c { cd ~/workspace/$1*; }
 
-function raket {
-  if [ -n "$1" ]; then
-    rake test TEST=$1;
-  else
-    rake test;
-  fi
-}
-
 function current_branch {
   if [ -d .git ]; then
     git rev-parse --abbrev-ref HEAD;

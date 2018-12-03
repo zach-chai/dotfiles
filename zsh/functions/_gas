@@ -1,2 +1,0 @@
-#compdef gas
-compadd $(git branch | grep \* -v)
