@@ -98,6 +98,12 @@ alias dc='docker-compose'
 alias dcr='docker-compose run --rm'
 alias dm='docker-machine'
 
+# kubernetes
+alias kg="kubectl get"
+
+# helm
+alias h="helm"
+
 # other
 alias rsync="rsync --progress"
 alias rt="ruby -Itest"
