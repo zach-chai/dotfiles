@@ -99,7 +99,7 @@ alias dcr='docker-compose run --rm'
 alias dm='docker-machine'
 
 # kubernetes
-alias kg="kubectl get"
+alias k="kubectl"
 
 # helm
 alias h="helm"
