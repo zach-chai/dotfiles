@@ -103,6 +103,7 @@ alias k="kubectl"
 
 # helm
 alias h="helm"
+alias hpurgeall="helm ls --all --short | xargs -L1 helm delete --purge"
 
 # other
 alias rsync="rsync --progress"
