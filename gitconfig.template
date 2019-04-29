@@ -22,3 +22,5 @@
 	default = simple
 [merge]
 	tool = vimdiff3
+[pager]
+	branch = false
