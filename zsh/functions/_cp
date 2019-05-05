@@ -1,0 +1,2 @@
+#compdef cp
+_files -W ${PERSONAL_CODE_PATH} -/

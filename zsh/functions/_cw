@@ -1,0 +1,2 @@
+#compdef cw
+_files -W ${WORK_CODE_PATH} -/
