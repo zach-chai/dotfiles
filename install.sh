@@ -75,5 +75,5 @@ done
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   echo "Installing oh-my-zsh"
-  $(git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh)
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
