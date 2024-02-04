@@ -2,7 +2,7 @@
 
 # TODO add an automated version
 
-IGNORE_FILES="LICENSE|README|install.sh|Rakefile|gitconfig.erb"
+IGNORE_FILES="LICENSE|README|install.sh"
 TEMPLATE_SUFFIX=.template
 
 function link_file () {
