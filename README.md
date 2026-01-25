@@ -1,46 +1,82 @@
-# Dot Files
+# Dotfiles
 
-## Bash Installation
+Opinionated shell setup with zsh (primary) plus legacy bash files. Includes
+aliases, completion, helper functions, and an install script that symlinks
+everything into your home directory.
 
-```
-git clone https://github.com/zach-chai/dotfiles.git .dotfiles
+## Quick start
+
+```bash
+git clone https://github.com/zach-chai/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install.sh
 ```
 
-At this point you can restart your terminal to see changes
+Restart your terminal after install.
 
-## Environment
+If you want zsh as your login shell:
 
-I am running on Linux. I primarily use zsh,
-but this includes some older bash files as well. If you would like to switch
-to zsh, you can do so with the following command.
-
-```
-chsh -s $(which zsh)
+```bash
+chsh -s "$(which zsh)"
 ```
 
-## Features
+## What this installs
 
-I normally place all of my coding projects in ~/workspace, so this directory
-can easily be accessed (and tab completed) with the "c" command. This can
-be configured by exporting CODE_PATH from the .localrc file.
+`install.sh` symlinks everything in this repo into `$HOME` (e.g. `zshrc`
+-> `~/.zshrc`, `zsh/` -> `~/.zsh/`). It also:
 
+- Generates `~/.gitconfig` from `gitconfig.template` (prompts for name/email/user/token).
+- Generates `~/.gitconfig_work` from `gitconfig_work.template` (prompts for work email).
+- Installs oh-my-zsh if it is missing.
+
+## Layout
+
+- `zshrc` → main entrypoint; loads oh-my-zsh and the files below.
+- `zsh/config` → PATH, environment variables, history options, key bindings.
+- `zsh/aliases` → git, docker, kubectl, rails, misc aliases.
+- `zsh/completion` → completion + case-insensitive matching tweaks.
+- `zsh/functions/*` → helper functions (see below).
+- `bash*`, `bash/` → older bash config files.
+- `tmux.conf` → tmux defaults.
+
+## Key features
+
+- Git prompt helper: shows current branch and rebase/merge state.
+- Project jumpers:
+  - `c <project>` → `~/workspace/<project>`
+  - `cw <project>` → `~/workspace/work/<project>`
+  - `cpd <project>` → `~/workspace/personal/<project>`
+  - `cdh <dir>` → `~/<dir>`
+- Quality-of-life aliases for git, docker, kubectl, rails, etc.
+- Tab completion tuned for case-insensitive matching.
+
+## Configuration
+
+Default paths live in `zsh/config`:
+
+- `CODE_PATH="$HOME/workspace"`
+- `WORK_CODE_PATH="$HOME/workspace/work"`
+- `PERSONAL_CODE_PATH="$HOME/workspace/personal"`
+
+Override machine-specific or sensitive values in `~/.localrc` (auto-loaded).
+Per-project shell snippets can be placed in `~/.projects/*` and will be sourced
+on shell startup.
+
+## Notes
+
+- Linux is the primary target. Some helpers (like `newtab`) are macOS-specific.
+- The install script prompts before overwriting existing dotfiles.
+
+## Update
+
+```bash
+cd ~/.dotfiles
+git pull
+./install.sh
 ```
-c re<tab>
-```
 
-There are a few key bindings set. Many of these require option to be
-set as the meta key. Option-left/right arrow will move cursor by word,
-and control-left/right will move to beginning and end of line.
-Control-option-N will open a new tab with the current directory under
-Mac OS X Terminal.
+## Uninstall
 
-If you're using git, you'll notice the current branch name shows up in
-the prompt while in a git repository.
-
-See the other aliases in ~/.zsh/aliases
-
-If there are some shell configuration settings which you want secure or
-specific to one system, place it into a ~/.localrc file. This will be
-loaded automatically if it exists.
+Remove the symlinks you want to undo (e.g. `~/.zshrc`, `~/.zsh/`, `~/.tmux.conf`).
+Oh-my-zsh is installed separately in `~/.oh-my-zsh` and can be removed manually
+if you no longer use it.
