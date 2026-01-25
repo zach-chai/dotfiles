@@ -1,0 +1,2 @@
+#compdef cpd
+_files -W ${PERSONAL_CODE_PATH} -/

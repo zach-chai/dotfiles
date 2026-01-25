@@ -1,0 +1,4 @@
+source ~/.bash/completion_scripts/git_completion
+complete -C ~/.bash/completion_scripts/project_completion -o default c
+source ~/.bash/completion_scripts/todo_completion
+complete -F _todo t

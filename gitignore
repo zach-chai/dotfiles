@@ -1,0 +1,10 @@
+.DS_Store
+*~
+.*.swp
+tags
+dump.rdb
+_site
+.bootstrap
+vendor/src
+log
+tmp

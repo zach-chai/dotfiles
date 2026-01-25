@@ -1,0 +1,132 @@
+# cd
+alias ..='cd ..'
+
+# ls
+if [[ $OSTYPE = darwin* ]]; then
+  alias ls="ls -GF"
+else
+  alias ls="ls -F --color=auto"
+fi
+alias l="ls -lAh"
+alias ll="ls -l"
+alias la='ls -A'
+
+# git
+alias gf='git fetch -v'
+alias gfu='git fetch upstream -v'
+alias gfo='git fetch origin -v'
+
+alias ga='git add'
+
+alias gp='git push'
+
+alias gd='git diff'
+alias gdm='git diff master'
+alias gdd='git diff develop'
+alias gdc='git diff --cached'
+alias gdcm='git diff --cached master'
+alias gdcd='git diff --cached develop'
+
+alias gca='git commit -a'
+
+alias gco='git checkout'
+alias gcd='git checkout develop'
+alias gcb='git checkout -b'
+alias gcom='git checkout master'
+alias gcod='git checkout develop'
+alias gcob='git checkout -b'
+
+alias gb='git branch'
+
+alias gs='git status'
+
+alias glog='git log'
+alias gloga='git log --graph --decorate --oneline --color --all'
+alias glogd='git log --graph --decorate $(git rev-list -g --all)'
+
+alias grb='git rebase'
+alias grba='git rebase --abort'
+alias grbc='git rebase --continue'
+alias grbi='git rebase -i'
+alias grbm='git rebase master'
+alias grbd='git rebase develop'
+
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gca='git commit --amend'
+alias gcan='git commit --amend --no-edit'
+
+alias grm='git remote'
+
+alias gr='git reset'
+alias grh='git reset --hard'
+alias grs='git reset --soft'
+alias gpop='git reset --soft HEAD^'
+alias grho='git reset --hard origin/$(current_branch)'
+
+alias gl='git pull'
+alias glr='git pull --rebase --stat'
+alias glo='git pull origin $(current_branch)'
+alias glu='git pull upstream $(current_branch)'
+alias glur='git pull --rebase --stat upstream $(current_branch)'
+
+alias gpo='git push origin $(current_branch)'
+alias gpsetup='git push -u origin $(current_branch)'
+alias gpheroku='git push heroku $(current_branch):master'
+alias ggca='git gc --prune=all'
+
+alias gupdate='git fetch -v upstream master:master && git push -v origin master:master'
+alias gupbase='git pull -v --rebase --stat --ff-only upstream master:master && git push -v origin master:master'
+
+# rails
+alias rc='rails console'
+alias rs='rails server'
+alias rg='rails generate'
+alias a='autotest -rails'
+alias tlog='tail -f log/development.log'
+alias scaffold='script/generate nifty_scaffold'
+alias migrate='rake db:migrate'
+alias rst='touch tmp/restart.txt'
+alias b='bundle exec'
+
+alias nrake="noglob rake"
+alias rfind='find . -name "*.rb" | xargs grep -n'  # Find ruby file
+
+# docker
+alias d="docker"
+alias dc='docker compose'
+alias dcr='docker compose run --rm'
+
+# kubernetes
+alias k="kubectl"
+
+# helm
+alias h="helm"
+alias hdelall="helm ls --all --short | xargs -L1 helm delete"
+
+# other
+alias rsync="rsync --progress"
+alias rt="ruby -Itest"
+alias zt="zeus tests"
+alias tmux="TERM=screen-256color-bce tmux -2"
+alias ssh-keygen='ssh-keygen -b 4096'
+alias weather="curl 'wttr.in/~Ottawa?2\&m'"
+
+which dnf > /dev/null
+if [[ $? -eq 0 ]]; then
+  alias ds='dnf search'
+  alias dp='dnf info'
+  alias di='sudo dnf install'
+  alias du='sudo dnf upgrade'
+  alias dr='sudo dnf remove'
+  alias dgi='sudo dnf group install'
+  alias dgu='sudo dnf group upgrade'
+  alias dgr='sudo dnf group remove'
+fi
+
+# commands starting with % for pasting from web
+alias %=' '
+
+# todo
+export TODOTXT_DEFAULT_ACTION=ls
+export TODOTXT_SORT_COMMAND='env LC_COLLATE=C sort -k 2,2 -k 1,1n'

@@ -1,0 +1,28 @@
+[user]
+	name = <replace_name>
+	email = <replace_email>
+[github]
+	user = <replace_user>
+	token = <replace_token>
+[hub]
+  protocol = ssh
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+	excludesfile = ~/.gitignore
+	editor = vim
+	autocrlf = input
+[apply]
+	whitespace = nowarn
+[format]
+	pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset
+[push]
+	default = simple
+[merge]
+	tool = vimdiff3
+[pager]
+	branch = false
+[includeIf "gitdir:~/workspace/work/"]
+	path = .gitconfig_work
