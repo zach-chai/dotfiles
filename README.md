@@ -26,7 +26,6 @@ chsh -s "$(which zsh)"
 -> `~/.zshrc`, `zsh/` -> `~/.zsh/`). It also:
 
 - Generates `~/.gitconfig` from `gitconfig.template` (prompts for name/email/user/token).
-- Generates `~/.gitconfig_work` from `gitconfig_work.template` (prompts for work email).
 - Installs oh-my-zsh if it is missing.
 
 ## Layout
@@ -37,7 +36,6 @@ chsh -s "$(which zsh)"
 - `zsh/completion` → completion + case-insensitive matching tweaks.
 - `zsh/functions/*` → helper functions (see below).
 - `bash*`, `bash/` → older bash config files.
-- `tmux.conf` → tmux defaults.
 
 ## Key features
 

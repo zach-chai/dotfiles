@@ -20,14 +20,6 @@ function link_file () {
     sed -i -e "s/<replace_email>/$email/g" ~/.gitconfig
     sed -i -e "s/<replace_user>/$user/g" ~/.gitconfig
     sed -i -e "s/<replace_token>/$token/g" ~/.gitconfig
-  elif [[ $1 == gitconfig_work.template ]]; then
-    echo "generating ~/.gitconfig_work"
-
-    read -p "Enter work email " work_email
-
-    cp ./gitconfig_work.template ~/.gitconfig_work
-
-    sed -i -e "s/<replace_email>/$work_email/g" ~/.gitconfig_work
   else
     echo "linking ~/.$1"
     $(ln -s "$PWD/$1" "$HOME/.$1")
