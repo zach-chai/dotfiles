@@ -17,7 +17,7 @@ patterns and guard OS-specific behavior with `OSTYPE` checks.
 
 ## Conventions
 
-- Keep shell scripts POSIX-friendly where possible; if using bash or zsh
+- Keep shell scripts POSIX-friendly where possible; if using shell-specific
   features, be explicit with the shebang and document assumptions.
 - Prefer `printf` over `echo` in scripts for portability.
 - Avoid GNU-only flags unless guarded or explained.

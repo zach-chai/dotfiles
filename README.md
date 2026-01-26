@@ -1,12 +1,12 @@
 # Dotfiles
 
-Opinionated shell setup with zsh (primary) plus legacy bash files. Includes
+Opinionated shell setup with zsh. Includes
 aliases, completion, helper functions, and an install script that symlinks
 everything into your home directory.
 
 ## Quick start
 
-```bash
+```sh
 git clone https://github.com/zach-chai/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ./install.sh
@@ -16,7 +16,7 @@ Restart your terminal after install.
 
 If you want zsh as your login shell:
 
-```bash
+```sh
 chsh -s "$(which zsh)"
 ```
 
@@ -35,7 +35,6 @@ chsh -s "$(which zsh)"
 - `zsh/aliases` → git, docker, kubectl, rails, misc aliases.
 - `zsh/completion` → completion + case-insensitive matching tweaks.
 - `zsh/functions/*` → helper functions (see below).
-- `bash*`, `bash/` → older bash config files.
 
 ## Key features
 
@@ -67,7 +66,7 @@ on shell startup.
 
 ## Update
 
-```bash
+```sh
 cd ~/.dotfiles
 git pull
 ./install.sh
