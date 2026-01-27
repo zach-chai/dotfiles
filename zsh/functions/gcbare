@@ -1,0 +1,30 @@
+# Clone a repo as bare into ./<repo>/.bare.
+if [[ -z $1 ]]; then
+  printf 'usage: gcbare <repo-url>\n' >&2
+  return 1
+fi
+
+local url="$1"
+local repo="${url##*/}"
+repo="${repo%/}"
+repo="${repo%.git}"
+
+if [[ -z $repo ]]; then
+  printf 'gcbare: could not determine repo name from "%s"\n' "$url" >&2
+  return 1
+fi
+
+local dir="./${repo}"
+
+if [[ -e $dir ]]; then
+  printf 'gcbare: destination exists: %s\n' "$dir" >&2
+  return 1
+fi
+
+mkdir -p "$dir" || return 1
+
+if ! git clone --bare "$url" "$dir/.bare"; then
+  printf 'gcbare: clone failed\n' >&2
+  rmdir "$dir" 2>/dev/null
+  return 1
+fi

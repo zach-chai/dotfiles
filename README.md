@@ -42,6 +42,7 @@ chsh -s "$(which zsh)"
 - Project jumpers:
   - `c <project>` → `~/workspace/<project>`
   - `cdh <dir>` → `~/<dir>`
+- Bare clone helper: `gcbare <repo-url>` → `./<repo>/.bare`
 - Quality-of-life aliases for git, docker, kubectl, rails, etc.
 - Tab completion tuned for case-insensitive matching.
 
