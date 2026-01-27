@@ -25,7 +25,7 @@ chsh -s "$(which zsh)"
 `install.sh` symlinks everything in this repo into `$HOME` (e.g. `zshrc`
 -> `~/.zshrc`, `zsh/` -> `~/.zsh/`). It also:
 
-- Generates `~/.gitconfig` from `gitconfig.template` (prompts for name/email/user/token).
+- Generates `~/.gitconfig` from `gitconfig.template` (prompts for name/email/user).
 - Installs oh-my-zsh if it is missing.
 
 ## Layout

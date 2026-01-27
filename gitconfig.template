@@ -3,7 +3,6 @@
 	email = <replace_email>
 [github]
 	user = <replace_user>
-	token = <replace_token>
 [hub]
   protocol = ssh
 [color]

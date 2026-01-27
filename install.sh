@@ -12,14 +12,12 @@ function link_file () {
     read -p "Enter name " name
     read -p "Enter email " email
     read -p "Enter Github username " user
-    read -p "Enter Github token " token
 
     cp ./gitconfig.template ~/.gitconfig
 
     sed -i -e "s/<replace_name>/$name/g" ~/.gitconfig
     sed -i -e "s/<replace_email>/$email/g" ~/.gitconfig
     sed -i -e "s/<replace_user>/$user/g" ~/.gitconfig
-    sed -i -e "s/<replace_token>/$token/g" ~/.gitconfig
   else
     echo "linking ~/.$1"
     $(ln -s "$PWD/$1" "$HOME/.$1")
