@@ -72,25 +72,10 @@ alias glur='git pull --rebase --stat upstream $(current_branch)'
 
 alias gpo='git push origin $(current_branch)'
 alias gpsetup='git push -u origin $(current_branch)'
-alias gpheroku='git push heroku $(current_branch):master'
 alias ggca='git gc --prune=all'
 
 alias gupdate='git fetch -v upstream master:master && git push -v origin master:master'
 alias gupbase='git pull -v --rebase --stat --ff-only upstream master:master && git push -v origin master:master'
-
-# rails
-alias rc='rails console'
-alias rs='rails server'
-alias rg='rails generate'
-alias a='autotest -rails'
-alias tlog='tail -f log/development.log'
-alias scaffold='script/generate nifty_scaffold'
-alias migrate='rake db:migrate'
-alias rst='touch tmp/restart.txt'
-alias b='bundle exec'
-
-alias nrake="noglob rake"
-alias rfind='find . -name "*.rb" | xargs grep -n'  # Find ruby file
 
 # docker
 alias d="docker"
@@ -106,8 +91,6 @@ alias hdelall="helm ls --all --short | xargs -L1 helm delete"
 
 # other
 alias rsync="rsync --progress"
-alias rt="ruby -Itest"
-alias zt="zeus tests"
 alias tmux="TERM=screen-256color-bce tmux -2"
 alias ssh-keygen='ssh-keygen -b 4096'
 alias weather="curl 'wttr.in/~Ottawa?2\&m'"
