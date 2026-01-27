@@ -1,15 +1,9 @@
 export EDITOR='vim'
 export CODE_PATH="$HOME/workspace"
-export WORK_CODE_PATH="$HOME/workspace/work"
-export PERSONAL_CODE_PATH="$HOME/workspace/personal"
 
 if [[ $OSTYPE = darwin* ]]; then
   export POSTGRES_HOME="/Applications/Postgres.app/Contents/Versions/9.4/bin"
   export PATH="/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$POSTGRES_HOME:$PATH"
-
-  export ANDROID_HOME="$HOME/Library/Android/Sdk"
-else
-  export ANDROID_HOME="$HOME/Android/Sdk"
 fi
 export PATH="$PATH:$HOME/bin:$HOME/.bin:$HOME/.local/bin"
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"

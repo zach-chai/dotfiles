@@ -41,8 +41,6 @@ chsh -s "$(which zsh)"
 - Git prompt helper: shows current branch and rebase/merge state.
 - Project jumpers:
   - `c <project>` → `~/workspace/<project>`
-  - `cw <project>` → `~/workspace/work/<project>`
-  - `cpd <project>` → `~/workspace/personal/<project>`
   - `cdh <dir>` → `~/<dir>`
 - Quality-of-life aliases for git, docker, kubectl, rails, etc.
 - Tab completion tuned for case-insensitive matching.
@@ -52,8 +50,6 @@ chsh -s "$(which zsh)"
 Default paths live in `zsh/config`:
 
 - `CODE_PATH="$HOME/workspace"`
-- `WORK_CODE_PATH="$HOME/workspace/work"`
-- `PERSONAL_CODE_PATH="$HOME/workspace/personal"`
 
 Override machine-specific or sensitive values in `~/.localrc` (auto-loaded).
 Per-project shell snippets can be placed in `~/.projects/*` and will be sourced

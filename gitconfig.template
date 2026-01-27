@@ -24,5 +24,3 @@
 	tool = vimdiff3
 [pager]
 	branch = false
-[includeIf "gitdir:~/workspace/work/"]
-	path = .gitconfig_work
