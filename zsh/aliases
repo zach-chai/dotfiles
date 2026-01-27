@@ -91,7 +91,6 @@ alias hdelall="helm ls --all --short | xargs -L1 helm delete"
 
 # other
 alias rsync="rsync --progress"
-alias tmux="TERM=screen-256color-bce tmux -2"
 alias ssh-keygen='ssh-keygen -b 4096'
 alias weather="curl 'wttr.in/~Ottawa?2\&m'"
 

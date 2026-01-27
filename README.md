@@ -70,6 +70,6 @@ git pull
 
 ## Uninstall
 
-Remove the symlinks you want to undo (e.g. `~/.zshrc`, `~/.zsh/`, `~/.tmux.conf`).
+Remove the symlinks you want to undo (e.g. `~/.zshrc`, `~/.zsh/`).
 Oh-my-zsh is installed separately in `~/.oh-my-zsh` and can be removed manually
 if you no longer use it.
