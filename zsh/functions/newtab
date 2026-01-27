@@ -1,3 +1,4 @@
+# Open a new macOS Terminal tab and persist the current path.
 savepath
 osascript >/dev/null <<EOF
 on do_submenu(app_name, menu_name, menu_item, submenu_item)

@@ -2,8 +2,7 @@ export EDITOR='vim' # Default editor; used by zsh's `fc` if $FCEDIT is unset.
 export CODE_PATH="$HOME/workspace" # Workspace root used by `c`/`_c` helpers.
 
 if [[ $OSTYPE = darwin* ]]; then
-  export POSTGRES_HOME="/Applications/Postgres.app/Contents/Versions/9.4/bin" # Postgres.app bin dir (macOS).
-  export PATH="/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$POSTGRES_HOME:$PATH" # Prepend macOS tool bins.
+  export PATH="/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH" # Prepend macOS tool bins.
 fi
 export PATH="$PATH:$HOME/bin:$HOME/.bin:$HOME/.local/bin" # Append user bin dirs to command search path.
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH" # Manpage search path for `man`.

@@ -1,3 +1,4 @@
+# Enable verbose zsh completion output.
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
 zstyle ':completion:*:messages' format '%d'

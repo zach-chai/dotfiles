@@ -1,2 +1,3 @@
 #compdef cdh
+# Completion for `cdh` helper (jump to $HOME).
 _files -W ~ -/

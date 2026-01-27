@@ -1,1 +1,2 @@
+# Jump to a subdirectory under $HOME.
 cd ~/$1;

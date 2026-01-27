@@ -1,2 +1,3 @@
 #compdef c
+# Completion for `c` helper (jump to $CODE_PATH).
 _files -W ${CODE_PATH} -/

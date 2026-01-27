@@ -1,1 +1,2 @@
+# Persist the current working directory for newtab.
 pwd > ~/.saved_path~
