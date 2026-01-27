@@ -1,41 +1,41 @@
-export EDITOR='vim'
-export CODE_PATH="$HOME/workspace"
+export EDITOR='vim' # Default editor; used by zsh's `fc` if $FCEDIT is unset.
+export CODE_PATH="$HOME/workspace" # Workspace root used by `c`/`_c` helpers.
 
 if [[ $OSTYPE = darwin* ]]; then
-  export POSTGRES_HOME="/Applications/Postgres.app/Contents/Versions/9.4/bin"
-  export PATH="/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$POSTGRES_HOME:$PATH"
+  export POSTGRES_HOME="/Applications/Postgres.app/Contents/Versions/9.4/bin" # Postgres.app bin dir (macOS).
+  export PATH="/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$POSTGRES_HOME:$PATH" # Prepend macOS tool bins.
 fi
-export PATH="$PATH:$HOME/bin:$HOME/.bin:$HOME/.local/bin"
-export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
+export PATH="$PATH:$HOME/bin:$HOME/.bin:$HOME/.local/bin" # Append user bin dirs to command search path.
+export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH" # Manpage search path for `man`.
 
-fpath=(~/.zsh/functions $fpath)
+fpath=(~/.zsh/functions $fpath) # Function autoload search path.
 
 autoload -U ~/.zsh/functions/*(:t)
 
-HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
-REPORTTIME=10 # print elapsed time when more than 10 seconds
+HISTFILE=~/.zsh_history # History file written on shell exit.
+HISTSIZE=1000 # Max events kept in memory for this session.
+SAVEHIST=1000 # Max events saved to the history file.
+REPORTTIME=10 # Print timing stats for commands taking >10s (user+sys time).
 
-setopt NO_BG_NICE # don't nice background tasks
-setopt NO_HUP
-setopt NO_LIST_BEEP
-setopt LOCAL_OPTIONS # allow functions to have local options
-setopt LOCAL_TRAPS # allow functions to have local traps
-setopt HIST_VERIFY
-setopt SHARE_HISTORY # share history between sessions ???
-setopt EXTENDED_HISTORY # add timestamps to history
-setopt PROMPT_SUBST
-setopt CORRECT
-setopt COMPLETE_IN_WORD
-setopt IGNORE_EOF
+setopt NO_BG_NICE # Do not lower priority for background jobs.
+setopt NO_HUP # Do not send SIGHUP to jobs when the shell exits.
+setopt NO_LIST_BEEP # Do not beep on ambiguous completion lists.
+setopt LOCAL_OPTIONS # Restore option state when a function returns.
+setopt LOCAL_TRAPS # Restore trap state set inside functions on return.
+setopt HIST_VERIFY # Expand history, then reload the line instead of executing.
+setopt SHARE_HISTORY # Import and append history across sessions.
+setopt EXTENDED_HISTORY # Store timestamps and durations in the history file.
+setopt PROMPT_SUBST # Enable parameter/command/arithmetic expansion in prompts.
+setopt CORRECT # Try to correct spelling of command names.
+setopt COMPLETE_IN_WORD # Complete from the cursor position, not just the end.
+setopt IGNORE_EOF # Require exit/logout instead of Ctrl-D (EOF).
 
-setopt APPEND_HISTORY # adds history
-setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
-setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
-setopt HIST_REDUCE_BLANKS
-setopt HIST_IGNORE_SPACE  # don't record commands that start with a space
-setopt menu_complete
+setopt APPEND_HISTORY # Append history to file instead of replacing it.
+setopt INC_APPEND_HISTORY SHARE_HISTORY # Write history immediately and share it.
+setopt HIST_IGNORE_ALL_DUPS # Remove older duplicates when a new duplicate is added.
+setopt HIST_REDUCE_BLANKS # Trim superfluous blanks in history entries.
+setopt HIST_IGNORE_SPACE # Skip history for lines starting with a space.
+setopt menu_complete # Cycle through matches on ambiguous completion.
 
 zle -N newtab
 
