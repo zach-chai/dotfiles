@@ -1,2 +1,32 @@
-prefix_rule(pattern=["sleep", "2"], decision="allow")
-prefix_rule(pattern=["docker", "compose", "up", "-d"], decision="allow")
+prefix_rule(
+    pattern=["sleep"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["docker", "compose"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["docker", "inspect"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["docker", "version"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["docker", "run"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["ls"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["cat"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["grep"],
+    decision="allow",
+)

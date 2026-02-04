@@ -4,6 +4,7 @@
     "allow": [
       "WebFetch",
       "WebSearch",
+      "Bash(sleep *)",
       "Bash(docker compose *)",
       "Bash(docker inspect *)",
       "Bash(docker version *)",
