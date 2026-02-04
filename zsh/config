@@ -11,6 +11,10 @@ fpath=(~/.zsh/functions $fpath) # Function autoload search path.
 
 autoload -U ~/.zsh/functions/*(:t)
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 HISTFILE=~/.zsh_history # History file written on shell exit.
 HISTSIZE=1000 # Max events kept in memory for this session.
 SAVEHIST=1000 # Max events saved to the history file.
