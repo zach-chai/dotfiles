@@ -26,6 +26,8 @@ chsh -s "$(which zsh)"
 -> `~/.zshrc`, `zsh/` -> `~/.zsh/`). It also:
 
 - Generates `~/.gitconfig` from `gitconfig.template` (prompts for name/email/user).
+- Links `claude/settings.json` to `~/.claude/settings.json` if present.
+- Links `claude/skills` to `~/.claude/skills` if present.
 - Installs oh-my-zsh if it is missing.
 
 ## Layout
@@ -35,6 +37,8 @@ chsh -s "$(which zsh)"
 - `zsh/aliases` → git, docker, kubectl, rails, misc aliases.
 - `zsh/completion` → completion + case-insensitive matching tweaks.
 - `zsh/functions/*` → helper functions (see below).
+- `claude/settings.json` → Claude permissions settings.
+- `claude/skills/` → Claude skills.
 
 ## Key features
 

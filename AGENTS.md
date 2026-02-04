@@ -2,6 +2,12 @@
 
 Guidelines for automation and contributors working in this repo.
 
+## Description
+
+Portable dotfiles for macOS and Linux, centered on Zsh configuration,
+aliases, and helper functions, with an install script that symlinks
+into `$HOME` and sets up git config templates.
+
 ## Scope
 
 These dotfiles must work on both macOS and Linux. Favor portable shell
