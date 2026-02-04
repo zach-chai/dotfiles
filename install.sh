@@ -2,7 +2,7 @@
 
 # TODO add an automated version
 
-IGNORE_FILES="LICENSE|README|install.sh|claude"
+IGNORE_FILES="LICENSE|README|install.sh|claude|codex"
 
 function link_file () {
   if [[ $1 == gitconfig.template ]]; then
@@ -144,6 +144,125 @@ if [ -d "$claude_skills" ]; then
         ;;
       n )
         printf "skipping ~/.claude/skills\n"
+        ;;
+      q )
+        exit 0
+        ;;
+    esac
+  fi
+fi
+
+codex_config="$PWD/codex/config.toml"
+home_codex_config="$HOME/.codex/config.toml"
+codex_skills="$PWD/codex/skills"
+home_codex_skills="$HOME/.codex/skills"
+codex_rules="$PWD/codex/rules"
+home_codex_rules="$HOME/.codex/rules"
+if [ -f "$codex_config" ]; then
+  # Codex config lives under ~/.codex, so link it explicitly.
+  if [ ! -e "$home_codex_config" ]; then
+    mkdir -p "$HOME/.codex"
+    printf "linking ~/.codex/config.toml\n"
+    ln -s "$codex_config" "$home_codex_config"
+  elif cmp -s "$codex_config" "$home_codex_config"; then
+    printf "identical .codex/config.toml\n"
+  elif [[ $replace_all == true ]]; then
+    rm -f "$home_codex_config"
+    mkdir -p "$HOME/.codex"
+    printf "linking ~/.codex/config.toml\n"
+    ln -s "$codex_config" "$home_codex_config"
+  else
+    read -p "overwrite ~/.codex/config.toml? [ynaq] " choice
+    case $choice in
+      a )
+        replace_all=true
+        rm -f "$home_codex_config"
+        mkdir -p "$HOME/.codex"
+        printf "linking ~/.codex/config.toml\n"
+        ln -s "$codex_config" "$home_codex_config"
+        ;;
+      y )
+        rm -f "$home_codex_config"
+        mkdir -p "$HOME/.codex"
+        printf "linking ~/.codex/config.toml\n"
+        ln -s "$codex_config" "$home_codex_config"
+        ;;
+      n )
+        printf "skipping ~/.codex/config.toml\n"
+        ;;
+      q )
+        exit 0
+        ;;
+    esac
+  fi
+fi
+
+if [ -d "$codex_skills" ]; then
+  # Codex skills live under ~/.codex, so link them explicitly.
+  if [ ! -e "$home_codex_skills" ]; then
+    mkdir -p "$HOME/.codex"
+    printf "linking ~/.codex/skills\n"
+    ln -s "$codex_skills" "$home_codex_skills"
+  elif [[ $replace_all == true ]]; then
+    rm -rf "$home_codex_skills"
+    mkdir -p "$HOME/.codex"
+    printf "linking ~/.codex/skills\n"
+    ln -s "$codex_skills" "$home_codex_skills"
+  else
+    read -p "overwrite ~/.codex/skills? [ynaq] " choice
+    case $choice in
+      a )
+        replace_all=true
+        rm -rf "$home_codex_skills"
+        mkdir -p "$HOME/.codex"
+        printf "linking ~/.codex/skills\n"
+        ln -s "$codex_skills" "$home_codex_skills"
+        ;;
+      y )
+        rm -rf "$home_codex_skills"
+        mkdir -p "$HOME/.codex"
+        printf "linking ~/.codex/skills\n"
+        ln -s "$codex_skills" "$home_codex_skills"
+        ;;
+      n )
+        printf "skipping ~/.codex/skills\n"
+        ;;
+      q )
+        exit 0
+        ;;
+    esac
+  fi
+fi
+
+if [ -d "$codex_rules" ]; then
+  # Codex rules live under ~/.codex, so link them explicitly.
+  if [ ! -e "$home_codex_rules" ]; then
+    mkdir -p "$HOME/.codex"
+    printf "linking ~/.codex/rules\n"
+    ln -s "$codex_rules" "$home_codex_rules"
+  elif [[ $replace_all == true ]]; then
+    rm -rf "$home_codex_rules"
+    mkdir -p "$HOME/.codex"
+    printf "linking ~/.codex/rules\n"
+    ln -s "$codex_rules" "$home_codex_rules"
+  else
+    read -p "overwrite ~/.codex/rules? [ynaq] " choice
+    case $choice in
+      a )
+        replace_all=true
+        rm -rf "$home_codex_rules"
+        mkdir -p "$HOME/.codex"
+        printf "linking ~/.codex/rules\n"
+        ln -s "$codex_rules" "$home_codex_rules"
+        ;;
+      y )
+        rm -rf "$home_codex_rules"
+        mkdir -p "$HOME/.codex"
+        printf "linking ~/.codex/rules\n"
+        ln -s "$codex_rules" "$home_codex_rules"
+        ;;
+      n )
+        printf "skipping ~/.codex/rules\n"
         ;;
       q )
         exit 0

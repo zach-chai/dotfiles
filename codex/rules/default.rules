@@ -1,0 +1,2 @@
+prefix_rule(pattern=["sleep", "2"], decision="allow")
+prefix_rule(pattern=["docker", "compose", "up", "-d"], decision="allow")

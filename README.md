@@ -28,6 +28,9 @@ chsh -s "$(which zsh)"
 - Generates `~/.gitconfig` from `gitconfig.template` (prompts for name/email/user).
 - Links `claude/settings.json` to `~/.claude/settings.json` if present.
 - Links `claude/skills` to `~/.claude/skills` if present.
+- Links `codex/config.toml` to `~/.codex/config.toml` if present.
+- Links `codex/skills` to `~/.codex/skills` if present.
+- Links `codex/rules` to `~/.codex/rules` if present.
 - Installs oh-my-zsh if it is missing.
 
 ## Layout
@@ -39,6 +42,9 @@ chsh -s "$(which zsh)"
 - `zsh/functions/*` → helper functions (see below).
 - `claude/settings.json` → Claude permissions settings.
 - `claude/skills/` → Claude skills.
+- `codex/config.toml` → Codex settings.
+- `codex/skills/` → Codex skills.
+- `codex/rules/` → Codex rules.
 
 ## Key features
 
