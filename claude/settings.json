@@ -1,10 +1,16 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
+    "defaultMode": "acceptEdits",
     "allow": [
       "WebFetch",
       "WebSearch",
       "Bash(sleep *)",
+      "Bash(mkdir *)",
+      "Bash(echo *)",
+      "Bash(go build *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
       "Bash(docker compose *)",
       "Bash(docker inspect *)",
       "Bash(docker version *)",
@@ -14,6 +20,8 @@
       "Bash(grep *)"
     ],
     "deny": [
+      "Bash(npm install -g *)",
+      "Bash(npm install --global *)",
       "Read(.env)",
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)"

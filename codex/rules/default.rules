@@ -3,6 +3,34 @@ prefix_rule(
     decision="allow",
 )
 prefix_rule(
+    pattern=["mkdir"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["echo"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["go", "build"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["npm", "install", "-g"],
+    decision="deny",
+)
+prefix_rule(
+    pattern=["npm", "install", "--global"],
+    decision="deny",
+)
+prefix_rule(
+    pattern=["npm", "install"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["npm", "run"],
+    decision="allow",
+)
+prefix_rule(
     pattern=["docker", "compose"],
     decision="allow",
 )
