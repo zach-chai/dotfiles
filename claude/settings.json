@@ -17,7 +17,8 @@
       "Bash(docker run *)",
       "Bash(ls *)",
       "Bash(cat *)",
-      "Bash(grep *)"
+      "Bash(grep *)",
+      "Bash(chmod *)"
     ],
     "deny": [
       "Bash(npm install -g *)",

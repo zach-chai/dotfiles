@@ -58,3 +58,7 @@ prefix_rule(
     pattern=["grep"],
     decision="allow",
 )
+prefix_rule(
+    pattern=["chmod"],
+    decision="allow",
+)
