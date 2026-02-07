@@ -1,0 +1,54 @@
+# Create a new git worktree + branch and link ignored files from the current worktree.
+if [[ -z $1 ]]; then
+  printf 'usage: gwtcob <branch> [start-point]\n' >&2
+  return 1
+fi
+
+local branch="$1"
+local start_point="$2"
+
+if [[ $branch == */* ]]; then
+  printf 'gwtcob: branch name contains "/"; use a name without "/" for a sibling worktree dir\n' >&2
+  return 1
+fi
+
+local toplevel
+toplevel=$(git rev-parse --show-toplevel 2>/dev/null) || {
+  printf 'gwtcob: not inside a git repository\n' >&2
+  return 1
+}
+
+local parent="${toplevel%/*}"
+if [[ -z $parent ]]; then
+  parent="/"
+fi
+local worktree_dir="${parent}/${branch}"
+
+if [[ -e $worktree_dir ]]; then
+  printf 'gwtcob: worktree path already exists: %s\n' "$worktree_dir" >&2
+  return 1
+fi
+
+if git show-ref --verify --quiet "refs/heads/$branch"; then
+  printf 'gwtcob: branch already exists: %s\n' "$branch" >&2
+  return 1
+fi
+
+if [[ -n $start_point ]]; then
+  git -C "$toplevel" worktree add -b "$branch" "$worktree_dir" "$start_point" || return 1
+else
+  git -C "$toplevel" worktree add -b "$branch" "$worktree_dir" || return 1
+fi
+
+local ignored_count
+ignored_count=$(git -C "$toplevel" ls-files -i --exclude-standard -z | tr -cd '\0' | wc -c | tr -d ' ')
+
+if [[ $ignored_count -gt 0 ]]; then
+  git -C "$toplevel" ls-files -i --exclude-standard -z | \
+    rsync -a --from0 --files-from=- "$toplevel"/ "$worktree_dir"/ || {
+      printf 'gwtcob: failed to copy ignored paths\n' >&2
+      return 1
+    }
+fi
+
+printf 'gwtcob: created %s and copied %d ignored paths\n' "$worktree_dir" "$ignored_count"

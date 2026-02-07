@@ -53,6 +53,7 @@ chsh -s "$(which zsh)"
   - `c <project>` → `~/workspace/<project>`
   - `cdh <dir>` → `~/<dir>`
 - Bare clone helper: `gcbare <repo-url>` → `./<repo>/.bare`
+- Worktree helper: `gwtcob <branch> [start-point]` → `../<branch>` (links ignored files)
 - Quality-of-life aliases for git, docker, kubectl, rails, etc.
 - Tab completion tuned for case-insensitive matching.
 
