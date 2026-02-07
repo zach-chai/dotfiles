@@ -16,11 +16,11 @@ prefix_rule(
 )
 prefix_rule(
     pattern=["npm", "install", "-g"],
-    decision="deny",
+    decision="prompt",
 )
 prefix_rule(
     pattern=["npm", "install", "--global"],
-    decision="deny",
+    decision="prompt",
 )
 prefix_rule(
     pattern=["npm", "install"],
