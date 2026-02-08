@@ -39,11 +39,23 @@ prefix_rule(
     decision="allow",
 )
 prefix_rule(
+    pattern=["docker", "ps"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["docker", "network"],
+    decision="allow",
+)
+prefix_rule(
     pattern=["docker", "version"],
     decision="allow",
 )
 prefix_rule(
     pattern=["docker", "run"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["curl"],
     decision="allow",
 )
 prefix_rule(
