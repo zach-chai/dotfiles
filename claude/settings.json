@@ -8,8 +8,8 @@
       "Read(~/.aws/**)"
     ],
     "ask": [
-      "Bash(npm install -g *)",
-      "Bash(npm install --global *)",
+      "Bash(docker compose exec *)",
+      "Bash(docker run *)"
     ],
     "allow": [
       "WebFetch",
@@ -25,7 +25,6 @@
       "Bash(docker ps *)",
       "Bash(docker network *)",
       "Bash(docker version *)",
-      "Bash(docker run *)",
       "Bash(curl *)",
       "Bash(ls *)",
       "Bash(cat *)",

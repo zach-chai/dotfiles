@@ -15,20 +15,16 @@ prefix_rule(
     decision="allow",
 )
 prefix_rule(
-    pattern=["npm", "install", "-g"],
-    decision="prompt",
-)
-prefix_rule(
-    pattern=["npm", "install", "--global"],
-    decision="prompt",
-)
-prefix_rule(
     pattern=["npm", "install"],
     decision="allow",
 )
 prefix_rule(
     pattern=["npm", "run"],
     decision="allow",
+)
+prefix_rule(
+    pattern=["docker", "compose", "exec"],
+    decision="prompt",
 )
 prefix_rule(
     pattern=["docker", "compose"],
@@ -52,7 +48,7 @@ prefix_rule(
 )
 prefix_rule(
     pattern=["docker", "run"],
-    decision="allow",
+    decision="prompt",
 )
 prefix_rule(
     pattern=["curl"],
