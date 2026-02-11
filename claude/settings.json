@@ -3,6 +3,7 @@
   "permissions": {
     "defaultMode": "acceptEdits",
     "deny": [
+      "Bash(sudo *)",
       "Read(.env)",
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)"
