@@ -73,6 +73,8 @@ on shell startup.
 
 - Linux is the primary target. Some helpers (like `newtab`) are macOS-specific.
 - The install script prompts before overwriting existing dotfiles.
+- Re-running `install.sh` prints `identical` for unchanged `~/.claude/skills`,
+  `~/.codex/skills`, and `~/.codex/rules` symlinks instead of prompting.
 
 ## Update
 

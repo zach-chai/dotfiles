@@ -35,6 +35,28 @@ function replace_file () {
   link_file "$1"
 }
 
+# Returns 0 when destination is a symlink that resolves to source.
+function is_link_to_target () {
+  local source destination source_real target_link target_real
+  source="$1"
+  destination="$2"
+
+  if [ ! -L "$destination" ]; then
+    return 1
+  fi
+
+  source_real=$(cd "$source" 2>/dev/null && pwd -P) || return 1
+  target_link=$(readlink "$destination") || return 1
+
+  if [[ "$target_link" = /* ]]; then
+    target_real=$(cd "$target_link" 2>/dev/null && pwd -P) || return 1
+  else
+    target_real=$(cd "$(dirname "$destination")/$target_link" 2>/dev/null && pwd -P) || return 1
+  fi
+
+  [ "$source_real" = "$target_real" ]
+}
+
 replace_all=false
 
 for file in *
@@ -121,6 +143,8 @@ if [ -d "$claude_skills" ]; then
     mkdir -p "$HOME/.claude"
     printf "linking ~/.claude/skills\n"
     ln -s "$claude_skills" "$home_claude_skills"
+  elif is_link_to_target "$claude_skills" "$home_claude_skills"; then
+    printf "identical .claude/skills\n"
   elif [[ $replace_all == true ]]; then
     rm -rf "$home_claude_skills"
     mkdir -p "$HOME/.claude"
@@ -205,6 +229,8 @@ if [ -d "$codex_skills" ]; then
     mkdir -p "$HOME/.codex"
     printf "linking ~/.codex/skills\n"
     ln -s "$codex_skills" "$home_codex_skills"
+  elif is_link_to_target "$codex_skills" "$home_codex_skills"; then
+    printf "identical .codex/skills\n"
   elif [[ $replace_all == true ]]; then
     rm -rf "$home_codex_skills"
     mkdir -p "$HOME/.codex"
@@ -242,6 +268,8 @@ if [ -d "$codex_rules" ]; then
     mkdir -p "$HOME/.codex"
     printf "linking ~/.codex/rules\n"
     ln -s "$codex_rules" "$home_codex_rules"
+  elif is_link_to_target "$codex_rules" "$home_codex_rules"; then
+    printf "identical .codex/rules\n"
   elif [[ $replace_all == true ]]; then
     rm -rf "$home_codex_rules"
     mkdir -p "$HOME/.codex"
