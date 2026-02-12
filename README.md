@@ -31,6 +31,7 @@ chsh -s "$(which zsh)"
 - Links `codex/config.toml` to `~/.codex/config.toml` if present.
 - Links `codex/skills` to `~/.codex/skills` if present.
 - Links `codex/rules` to `~/.codex/rules` if present.
+- Links `codex/AGENTS.md` to `~/.codex/AGENTS.md` if present.
 - Installs oh-my-zsh if it is missing.
 
 ## Layout
@@ -45,6 +46,7 @@ chsh -s "$(which zsh)"
 - `codex/config.toml` → Codex settings.
 - `codex/skills/` → Codex skills.
 - `codex/rules/` → Codex rules.
+- `codex/AGENTS.md` → generic agent instructions synced to `~/.codex/AGENTS.md`.
 
 ## Key features
 

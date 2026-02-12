@@ -2,7 +2,7 @@
 
 # TODO add an automated version
 
-IGNORE_FILES="LICENSE|README|install.sh|claude|codex"
+IGNORE_FILES="LICENSE|README|install.sh|claude|codex|AGENTS.md"
 
 function link_file () {
   if [[ $1 == gitconfig.template ]]; then
@@ -158,6 +158,8 @@ codex_skills="$PWD/codex/skills"
 home_codex_skills="$HOME/.codex/skills"
 codex_rules="$PWD/codex/rules"
 home_codex_rules="$HOME/.codex/rules"
+codex_agents="$PWD/codex/AGENTS.md"
+home_codex_agents="$HOME/.codex/AGENTS.md"
 if [ -f "$codex_config" ]; then
   # Codex config lives under ~/.codex, so link it explicitly.
   if [ ! -e "$home_codex_config" ]; then
@@ -263,6 +265,45 @@ if [ -d "$codex_rules" ]; then
         ;;
       n )
         printf "skipping ~/.codex/rules\n"
+        ;;
+      q )
+        exit 0
+        ;;
+    esac
+  fi
+fi
+
+if [ -f "$codex_agents" ]; then
+  # Global Codex instructions live at ~/.codex/AGENTS.md.
+  if [ ! -e "$home_codex_agents" ]; then
+    mkdir -p "$HOME/.codex"
+    printf "linking ~/.codex/AGENTS.md\n"
+    ln -s "$codex_agents" "$home_codex_agents"
+  elif cmp -s "$codex_agents" "$home_codex_agents"; then
+    printf "identical .codex/AGENTS.md\n"
+  elif [[ $replace_all == true ]]; then
+    rm -f "$home_codex_agents"
+    mkdir -p "$HOME/.codex"
+    printf "linking ~/.codex/AGENTS.md\n"
+    ln -s "$codex_agents" "$home_codex_agents"
+  else
+    read -p "overwrite ~/.codex/AGENTS.md? [ynaq] " choice
+    case $choice in
+      a )
+        replace_all=true
+        rm -f "$home_codex_agents"
+        mkdir -p "$HOME/.codex"
+        printf "linking ~/.codex/AGENTS.md\n"
+        ln -s "$codex_agents" "$home_codex_agents"
+        ;;
+      y )
+        rm -f "$home_codex_agents"
+        mkdir -p "$HOME/.codex"
+        printf "linking ~/.codex/AGENTS.md\n"
+        ln -s "$codex_agents" "$home_codex_agents"
+        ;;
+      n )
+        printf "skipping ~/.codex/AGENTS.md\n"
         ;;
       q )
         exit 0
