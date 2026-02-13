@@ -176,6 +176,47 @@ if [ -d "$claude_skills" ]; then
   fi
 fi
 
+claude_md="$PWD/claude/CLAUDE.md"
+home_claude_md="$HOME/.claude/CLAUDE.md"
+if [ -f "$claude_md" ]; then
+  # Global Claude instructions live at ~/.claude/CLAUDE.md.
+  if [ ! -e "$home_claude_md" ]; then
+    mkdir -p "$HOME/.claude"
+    printf "linking ~/.claude/CLAUDE.md\n"
+    ln -s "$claude_md" "$home_claude_md"
+  elif cmp -s "$claude_md" "$home_claude_md"; then
+    printf "identical .claude/CLAUDE.md\n"
+  elif [[ $replace_all == true ]]; then
+    rm -f "$home_claude_md"
+    mkdir -p "$HOME/.claude"
+    printf "linking ~/.claude/CLAUDE.md\n"
+    ln -s "$claude_md" "$home_claude_md"
+  else
+    read -p "overwrite ~/.claude/CLAUDE.md? [ynaq] " choice
+    case $choice in
+      a )
+        replace_all=true
+        rm -f "$home_claude_md"
+        mkdir -p "$HOME/.claude"
+        printf "linking ~/.claude/CLAUDE.md\n"
+        ln -s "$claude_md" "$home_claude_md"
+        ;;
+      y )
+        rm -f "$home_claude_md"
+        mkdir -p "$HOME/.claude"
+        printf "linking ~/.claude/CLAUDE.md\n"
+        ln -s "$claude_md" "$home_claude_md"
+        ;;
+      n )
+        printf "skipping ~/.claude/CLAUDE.md\n"
+        ;;
+      q )
+        exit 0
+        ;;
+    esac
+  fi
+fi
+
 codex_config="$PWD/codex/config.toml"
 home_codex_config="$HOME/.codex/config.toml"
 codex_skills="$PWD/codex/skills"
