@@ -28,6 +28,7 @@ chsh -s "$(which zsh)"
 - Generates `~/.gitconfig` from `gitconfig.template` (prompts for name/email/user).
 - Links `claude/settings.json` to `~/.claude/settings.json` if present.
 - Links `claude/skills` to `~/.claude/skills` if present.
+- Links `claude/CLAUDE.md` to `~/.claude/CLAUDE.md` if present.
 - Links `codex/config.toml` to `~/.codex/config.toml` if present.
 - Links `codex/skills` to `~/.codex/skills` if present.
 - Links `codex/rules` to `~/.codex/rules` if present.

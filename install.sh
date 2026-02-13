@@ -1,380 +1,169 @@
 #!/bin/bash
 
-# TODO add an automated version
+# Symlink map: repo-relative source : absolute target (one per line).
+# Entries whose source does not exist in the repo are silently skipped.
+SYMLINK_MAP="
+zshrc:$HOME/.zshrc
+zsh:$HOME/.zsh
+claude/settings.json:$HOME/.claude/settings.json
+claude/skills:$HOME/.claude/skills
+claude/CLAUDE.md:$HOME/.claude/CLAUDE.md
+codex/config.toml:$HOME/.codex/config.toml
+codex/skills:$HOME/.codex/skills
+codex/rules:$HOME/.codex/rules
+codex/AGENTS.md:$HOME/.codex/AGENTS.md
+"
 
-IGNORE_FILES="LICENSE|README.md|install.sh|claude|codex|AGENTS.md|CLAUDE.md"
+# Template map: files that are copied and variable-substituted, not symlinked.
+TEMPLATE_MAP="
+gitconfig.template:$HOME/.gitconfig
+"
 
-function link_file () {
-  if [[ $1 == gitconfig.template ]]; then
-    # Git config is generated from the template with user-specific values.
-    printf "generating ~/.gitconfig\n"
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
 
-    read -p "Enter email " email
-
-    cp ./gitconfig.template ~/.gitconfig
-
-    if [[ "$OSTYPE" == darwin* ]]; then
-      sed -i '' -e "s/<replace_email>/$email/g" ~/.gitconfig
-    else
-      sed -i -e "s/<replace_email>/$email/g" ~/.gitconfig
-    fi
+# Portable absolute-path resolver (avoids GNU readlink -f).
+# For directories: cd + pwd -P.  For files: resolve the parent dir.
+resolve_path () {
+  if [ -d "$1" ]; then
+    (cd "$1" && pwd -P)
   else
-    printf "linking ~/.$1\n"
-    ln -s "$PWD/$1" "$HOME/.$1"
+    local dir base
+    dir=$(cd "$(dirname "$1")" && pwd -P) || return 1
+    base=$(basename "$1")
+    printf '%s/%s' "$dir" "$base"
   fi
 }
 
-function replace_file () {
-  rm -rf "$HOME/.$1"
-  link_file "$1"
+# Follow a symlink one level and resolve the result to an absolute path.
+resolve_link () {
+  local link_target
+  link_target=$(readlink "$1") || return 1
+  if [[ "$link_target" != /* ]]; then
+    link_target="$(dirname "$1")/$link_target"
+  fi
+  resolve_path "$link_target"
 }
 
-# Returns 0 when destination is a symlink that resolves to source.
-function is_link_to_target () {
-  local source destination source_real target_link target_real
-  source="$1"
-  destination="$2"
+# Replace $HOME prefix with ~ for display.
+display_path () {
+  printf '%s' "${1/#$HOME/~}"
+}
 
-  if [ ! -L "$destination" ]; then
-    return 1
+# Returns 0 when the target already matches the source.
+# For symlinks: checks whether the link resolves to the source path.
+# For regular files: falls back to byte-for-byte comparison.
+is_identical () {
+  local source="$1" target="$2"
+
+  if [ -L "$target" ]; then
+    local source_real target_real
+    source_real=$(resolve_path "$source") || return 1
+    target_real=$(resolve_link "$target") || return 1
+    [ "$source_real" = "$target_real" ] && return 0
   fi
 
-  source_real=$(cd "$source" 2>/dev/null && pwd -P) || return 1
-  target_link=$(readlink "$destination") || return 1
+  if [ -f "$source" ] && [ -f "$target" ]; then
+    cmp -s "$source" "$target" && return 0
+  fi
 
-  if [[ "$target_link" = /* ]]; then
-    target_real=$(cd "$target_link" 2>/dev/null && pwd -P) || return 1
+  return 1
+}
+
+# Create a symlink, creating parent directories as needed.
+do_link () {
+  local source="$1" target="$2"
+  mkdir -p "$(dirname "$target")"
+  printf "linking %s\n" "$(display_path "$target")"
+  ln -s "$source" "$target"
+}
+
+# Remove existing target and re-link.
+do_replace () {
+  local source="$1" target="$2"
+  rm -rf "$target"
+  do_link "$source" "$target"
+}
+
+# Process a template file: copy to target and perform substitutions.
+process_template () {
+  local source="$1" target="$2"
+
+  printf "generating %s\n" "$(display_path "$target")"
+  read -p "Enter email: " email
+
+  mkdir -p "$(dirname "$target")"
+  cp "$source" "$target"
+
+  if [[ "$OSTYPE" == darwin* ]]; then
+    sed -i '' -e "s/<replace_email>/$email/g" "$target"
   else
-    target_real=$(cd "$(dirname "$destination")/$target_link" 2>/dev/null && pwd -P) || return 1
+    sed -i -e "s/<replace_email>/$email/g" "$target"
   fi
-
-  [ "$source_real" = "$target_real" ]
 }
+
+# Prompt for overwrite and act. Shared by both loops.
+# Sets replace_all=true when the user picks "a".
+prompt_overwrite () {
+  local source="$1" target="$2" action="$3"
+  read -p "overwrite $(display_path "$target")? [ynaq] " choice
+  case $choice in
+    a ) replace_all=true; $action "$source" "$target" ;;
+    y ) $action "$source" "$target" ;;
+    n ) printf "skipping %s\n" "$(display_path "$target")" ;;
+    q ) exit 0 ;;
+  esac
+}
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
 
 replace_all=false
 
-for file in *
-do
-  if printf "%s\n" "$file" | grep -Eq "^($IGNORE_FILES)$"; then
-    continue
-  fi
-  home_file=${file%%.template}
-  if [ ! -e "$HOME/.$home_file" ]; then
-    link_file "$file"
-    continue
-  fi
+# --- Templates (copy + substitute) ---
+while IFS=: read -r src tgt; do
+  [ -z "$src" ] && continue
+  source_path="$PWD/$src"
+  [ ! -e "$source_path" ] && continue
 
-  if cmp -s "./$file" "$HOME/.$home_file"; then
-    printf "identical .$file\n"
+  if [ ! -e "$tgt" ]; then
+    process_template "$source_path" "$tgt"
+  elif is_identical "$source_path" "$tgt"; then
+    printf "identical %s\n" "$(display_path "$tgt")"
   elif [[ $replace_all == true ]]; then
-    replace_file "$file"
+    rm -f "$tgt"
+    process_template "$source_path" "$tgt"
   else
-    read -p "overwrite ~/.$home_file? [ynaq] " choice
+    read -p "overwrite $(display_path "$tgt")? [ynaq] " choice
     case $choice in
-      a )
-        replace_all=true
-        replace_file "$file"
-        ;;
-      y )
-        replace_file "$file"
-        ;;
-      n )
-        printf "skipping ~/.$file\n"
-        ;;
-      q )
-        exit 0
-        ;;
+      a ) replace_all=true; rm -f "$tgt"; process_template "$source_path" "$tgt" ;;
+      y ) rm -f "$tgt"; process_template "$source_path" "$tgt" ;;
+      n ) printf "skipping %s\n" "$(display_path "$tgt")" ;;
+      q ) exit 0 ;;
     esac
   fi
-done
+done <<< "$TEMPLATE_MAP"
 
-claude_settings="$PWD/claude/settings.json"
-home_claude_settings="$HOME/.claude/settings.json"
-claude_skills="$PWD/claude/skills"
-home_claude_skills="$HOME/.claude/skills"
-if [ -f "$claude_settings" ]; then
-  # Claude settings are stored under ~/.claude, so link this file explicitly.
-  if [ ! -e "$home_claude_settings" ]; then
-    mkdir -p "$HOME/.claude"
-    printf "linking ~/.claude/settings.json\n"
-    ln -s "$claude_settings" "$home_claude_settings"
-  elif cmp -s "$claude_settings" "$home_claude_settings"; then
-    printf "identical .claude/settings.json\n"
+# --- Symlinks ---
+while IFS=: read -r src tgt; do
+  [ -z "$src" ] && continue
+  source_path="$PWD/$src"
+  [ ! -e "$source_path" ] && continue
+
+  if [ ! -e "$tgt" ]; then
+    do_link "$source_path" "$tgt"
+  elif is_identical "$source_path" "$tgt"; then
+    printf "identical %s\n" "$(display_path "$tgt")"
   elif [[ $replace_all == true ]]; then
-    rm -f "$home_claude_settings"
-    mkdir -p "$HOME/.claude"
-    printf "linking ~/.claude/settings.json\n"
-    ln -s "$claude_settings" "$home_claude_settings"
+    do_replace "$source_path" "$tgt"
   else
-    read -p "overwrite ~/.claude/settings.json? [ynaq] " choice
-    case $choice in
-      a )
-        replace_all=true
-        rm -f "$home_claude_settings"
-        mkdir -p "$HOME/.claude"
-        printf "linking ~/.claude/settings.json\n"
-        ln -s "$claude_settings" "$home_claude_settings"
-        ;;
-      y )
-        rm -f "$home_claude_settings"
-        mkdir -p "$HOME/.claude"
-        printf "linking ~/.claude/settings.json\n"
-        ln -s "$claude_settings" "$home_claude_settings"
-        ;;
-      n )
-        printf "skipping ~/.claude/settings.json\n"
-        ;;
-      q )
-        exit 0
-        ;;
-    esac
+    prompt_overwrite "$source_path" "$tgt" do_replace
   fi
-fi
+done <<< "$SYMLINK_MAP"
 
-if [ -d "$claude_skills" ]; then
-  # Claude skills are stored under ~/.claude, so link this directory explicitly.
-  if [ ! -e "$home_claude_skills" ]; then
-    mkdir -p "$HOME/.claude"
-    printf "linking ~/.claude/skills\n"
-    ln -s "$claude_skills" "$home_claude_skills"
-  elif is_link_to_target "$claude_skills" "$home_claude_skills"; then
-    printf "identical .claude/skills\n"
-  elif [[ $replace_all == true ]]; then
-    rm -rf "$home_claude_skills"
-    mkdir -p "$HOME/.claude"
-    printf "linking ~/.claude/skills\n"
-    ln -s "$claude_skills" "$home_claude_skills"
-  else
-    read -p "overwrite ~/.claude/skills? [ynaq] " choice
-    case $choice in
-      a )
-        replace_all=true
-        rm -rf "$home_claude_skills"
-        mkdir -p "$HOME/.claude"
-        printf "linking ~/.claude/skills\n"
-        ln -s "$claude_skills" "$home_claude_skills"
-        ;;
-      y )
-        rm -rf "$home_claude_skills"
-        mkdir -p "$HOME/.claude"
-        printf "linking ~/.claude/skills\n"
-        ln -s "$claude_skills" "$home_claude_skills"
-        ;;
-      n )
-        printf "skipping ~/.claude/skills\n"
-        ;;
-      q )
-        exit 0
-        ;;
-    esac
-  fi
-fi
-
-claude_md="$PWD/claude/CLAUDE.md"
-home_claude_md="$HOME/.claude/CLAUDE.md"
-if [ -f "$claude_md" ]; then
-  # Global Claude instructions live at ~/.claude/CLAUDE.md.
-  if [ ! -e "$home_claude_md" ]; then
-    mkdir -p "$HOME/.claude"
-    printf "linking ~/.claude/CLAUDE.md\n"
-    ln -s "$claude_md" "$home_claude_md"
-  elif cmp -s "$claude_md" "$home_claude_md"; then
-    printf "identical .claude/CLAUDE.md\n"
-  elif [[ $replace_all == true ]]; then
-    rm -f "$home_claude_md"
-    mkdir -p "$HOME/.claude"
-    printf "linking ~/.claude/CLAUDE.md\n"
-    ln -s "$claude_md" "$home_claude_md"
-  else
-    read -p "overwrite ~/.claude/CLAUDE.md? [ynaq] " choice
-    case $choice in
-      a )
-        replace_all=true
-        rm -f "$home_claude_md"
-        mkdir -p "$HOME/.claude"
-        printf "linking ~/.claude/CLAUDE.md\n"
-        ln -s "$claude_md" "$home_claude_md"
-        ;;
-      y )
-        rm -f "$home_claude_md"
-        mkdir -p "$HOME/.claude"
-        printf "linking ~/.claude/CLAUDE.md\n"
-        ln -s "$claude_md" "$home_claude_md"
-        ;;
-      n )
-        printf "skipping ~/.claude/CLAUDE.md\n"
-        ;;
-      q )
-        exit 0
-        ;;
-    esac
-  fi
-fi
-
-codex_config="$PWD/codex/config.toml"
-home_codex_config="$HOME/.codex/config.toml"
-codex_skills="$PWD/codex/skills"
-home_codex_skills="$HOME/.codex/skills"
-codex_rules="$PWD/codex/rules"
-home_codex_rules="$HOME/.codex/rules"
-codex_agents="$PWD/codex/AGENTS.md"
-home_codex_agents="$HOME/.codex/AGENTS.md"
-if [ -f "$codex_config" ]; then
-  # Codex config lives under ~/.codex, so link it explicitly.
-  if [ ! -e "$home_codex_config" ]; then
-    mkdir -p "$HOME/.codex"
-    printf "linking ~/.codex/config.toml\n"
-    ln -s "$codex_config" "$home_codex_config"
-  elif cmp -s "$codex_config" "$home_codex_config"; then
-    printf "identical .codex/config.toml\n"
-  elif [[ $replace_all == true ]]; then
-    rm -f "$home_codex_config"
-    mkdir -p "$HOME/.codex"
-    printf "linking ~/.codex/config.toml\n"
-    ln -s "$codex_config" "$home_codex_config"
-  else
-    read -p "overwrite ~/.codex/config.toml? [ynaq] " choice
-    case $choice in
-      a )
-        replace_all=true
-        rm -f "$home_codex_config"
-        mkdir -p "$HOME/.codex"
-        printf "linking ~/.codex/config.toml\n"
-        ln -s "$codex_config" "$home_codex_config"
-        ;;
-      y )
-        rm -f "$home_codex_config"
-        mkdir -p "$HOME/.codex"
-        printf "linking ~/.codex/config.toml\n"
-        ln -s "$codex_config" "$home_codex_config"
-        ;;
-      n )
-        printf "skipping ~/.codex/config.toml\n"
-        ;;
-      q )
-        exit 0
-        ;;
-    esac
-  fi
-fi
-
-if [ -d "$codex_skills" ]; then
-  # Codex skills live under ~/.codex, so link them explicitly.
-  if [ ! -e "$home_codex_skills" ]; then
-    mkdir -p "$HOME/.codex"
-    printf "linking ~/.codex/skills\n"
-    ln -s "$codex_skills" "$home_codex_skills"
-  elif is_link_to_target "$codex_skills" "$home_codex_skills"; then
-    printf "identical .codex/skills\n"
-  elif [[ $replace_all == true ]]; then
-    rm -rf "$home_codex_skills"
-    mkdir -p "$HOME/.codex"
-    printf "linking ~/.codex/skills\n"
-    ln -s "$codex_skills" "$home_codex_skills"
-  else
-    read -p "overwrite ~/.codex/skills? [ynaq] " choice
-    case $choice in
-      a )
-        replace_all=true
-        rm -rf "$home_codex_skills"
-        mkdir -p "$HOME/.codex"
-        printf "linking ~/.codex/skills\n"
-        ln -s "$codex_skills" "$home_codex_skills"
-        ;;
-      y )
-        rm -rf "$home_codex_skills"
-        mkdir -p "$HOME/.codex"
-        printf "linking ~/.codex/skills\n"
-        ln -s "$codex_skills" "$home_codex_skills"
-        ;;
-      n )
-        printf "skipping ~/.codex/skills\n"
-        ;;
-      q )
-        exit 0
-        ;;
-    esac
-  fi
-fi
-
-if [ -d "$codex_rules" ]; then
-  # Codex rules live under ~/.codex, so link them explicitly.
-  if [ ! -e "$home_codex_rules" ]; then
-    mkdir -p "$HOME/.codex"
-    printf "linking ~/.codex/rules\n"
-    ln -s "$codex_rules" "$home_codex_rules"
-  elif is_link_to_target "$codex_rules" "$home_codex_rules"; then
-    printf "identical .codex/rules\n"
-  elif [[ $replace_all == true ]]; then
-    rm -rf "$home_codex_rules"
-    mkdir -p "$HOME/.codex"
-    printf "linking ~/.codex/rules\n"
-    ln -s "$codex_rules" "$home_codex_rules"
-  else
-    read -p "overwrite ~/.codex/rules? [ynaq] " choice
-    case $choice in
-      a )
-        replace_all=true
-        rm -rf "$home_codex_rules"
-        mkdir -p "$HOME/.codex"
-        printf "linking ~/.codex/rules\n"
-        ln -s "$codex_rules" "$home_codex_rules"
-        ;;
-      y )
-        rm -rf "$home_codex_rules"
-        mkdir -p "$HOME/.codex"
-        printf "linking ~/.codex/rules\n"
-        ln -s "$codex_rules" "$home_codex_rules"
-        ;;
-      n )
-        printf "skipping ~/.codex/rules\n"
-        ;;
-      q )
-        exit 0
-        ;;
-    esac
-  fi
-fi
-
-if [ -f "$codex_agents" ]; then
-  # Global Codex instructions live at ~/.codex/AGENTS.md.
-  if [ ! -e "$home_codex_agents" ]; then
-    mkdir -p "$HOME/.codex"
-    printf "linking ~/.codex/AGENTS.md\n"
-    ln -s "$codex_agents" "$home_codex_agents"
-  elif cmp -s "$codex_agents" "$home_codex_agents"; then
-    printf "identical .codex/AGENTS.md\n"
-  elif [[ $replace_all == true ]]; then
-    rm -f "$home_codex_agents"
-    mkdir -p "$HOME/.codex"
-    printf "linking ~/.codex/AGENTS.md\n"
-    ln -s "$codex_agents" "$home_codex_agents"
-  else
-    read -p "overwrite ~/.codex/AGENTS.md? [ynaq] " choice
-    case $choice in
-      a )
-        replace_all=true
-        rm -f "$home_codex_agents"
-        mkdir -p "$HOME/.codex"
-        printf "linking ~/.codex/AGENTS.md\n"
-        ln -s "$codex_agents" "$home_codex_agents"
-        ;;
-      y )
-        rm -f "$home_codex_agents"
-        mkdir -p "$HOME/.codex"
-        printf "linking ~/.codex/AGENTS.md\n"
-        ln -s "$codex_agents" "$home_codex_agents"
-        ;;
-      n )
-        printf "skipping ~/.codex/AGENTS.md\n"
-        ;;
-      q )
-        exit 0
-        ;;
-    esac
-  fi
-fi
-
+# --- Install oh-my-zsh if missing ---
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   printf "Installing oh-my-zsh\n"
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
