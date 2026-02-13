@@ -9,20 +9,14 @@ function link_file () {
     # Git config is generated from the template with user-specific values.
     printf "generating ~/.gitconfig\n"
 
-    read -p "Enter name " name
     read -p "Enter email " email
-    read -p "Enter Github username " user
 
     cp ./gitconfig.template ~/.gitconfig
 
     if [[ "$OSTYPE" == darwin* ]]; then
-      sed -i '' -e "s/<replace_name>/$name/g" ~/.gitconfig
       sed -i '' -e "s/<replace_email>/$email/g" ~/.gitconfig
-      sed -i '' -e "s/<replace_user>/$user/g" ~/.gitconfig
     else
-      sed -i -e "s/<replace_name>/$name/g" ~/.gitconfig
       sed -i -e "s/<replace_email>/$email/g" ~/.gitconfig
-      sed -i -e "s/<replace_user>/$user/g" ~/.gitconfig
     fi
   else
     printf "linking ~/.$1\n"

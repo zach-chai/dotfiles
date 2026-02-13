@@ -1,8 +1,8 @@
 [user]
-	name = <replace_name>
+	name = zach chai
 	email = <replace_email>
 [github]
-	user = <replace_user>
+	user = zach-chai
 [hub]
   protocol = ssh
 [color]
