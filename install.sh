@@ -2,7 +2,7 @@
 
 # TODO add an automated version
 
-IGNORE_FILES="LICENSE|README|install.sh|claude|codex|AGENTS.md"
+IGNORE_FILES="LICENSE|README.md|install.sh|claude|codex|AGENTS.md|CLAUDE.md"
 
 function link_file () {
   if [[ $1 == gitconfig.template ]]; then
