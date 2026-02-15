@@ -12,6 +12,7 @@ codex/config.toml:$HOME/.codex/config.toml
 codex/skills:$HOME/.codex/skills
 codex/rules:$HOME/.codex/rules
 codex/AGENTS.md:$HOME/.codex/AGENTS.md
+vscode-server/data/Machine/settings.json:$HOME/.vscode-server/data/Machine/settings.json
 "
 
 # Template map: files that are copied and variable-substituted, not symlinked.
