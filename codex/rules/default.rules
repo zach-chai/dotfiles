@@ -27,6 +27,34 @@ prefix_rule(
     decision="allow",
 )
 prefix_rule(
+    pattern=["npm"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["pnpm"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["node"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["jq"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["make"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["pwd"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["time"],
+    decision="allow",
+)
+prefix_rule(
     pattern=["docker", "compose", "exec"],
     decision="prompt",
 )

@@ -70,6 +70,16 @@ Override machine-specific or sensitive values in `~/.localrc` (auto-loaded).
 Per-project shell snippets can be placed in `~/.projects/*` and will be sourced
 on shell startup.
 
+## Agent permissions
+
+Automation allowlists are versioned in:
+
+- `claude/settings.json` (`permissions.allow`)
+- `codex/rules/default.rules` (`prefix_rule(..., decision="allow")`)
+
+These include shared shell allowances such as `make`, `pwd`, `time`, `jq`,
+`npm`, `pnpm`, and `node`.
+
 ## Notes
 
 - Linux is the primary target. Some helpers (like `newtab`) are macOS-specific.
