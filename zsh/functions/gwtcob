@@ -41,10 +41,10 @@ else
 fi
 
 local ignored_count
-ignored_count=$(git -C "$toplevel" ls-files -i --exclude-standard -z | tr -cd '\0' | wc -c | tr -d ' ')
+ignored_count=$(git -C "$toplevel" ls-files -i -o --exclude-standard -z | tr -cd '\0' | wc -c | tr -d ' ')
 
 if [[ $ignored_count -gt 0 ]]; then
-  git -C "$toplevel" ls-files -i --exclude-standard -z | \
+  git -C "$toplevel" ls-files -i -o --exclude-standard -z | \
     rsync -a --from0 --files-from=- "$toplevel"/ "$worktree_dir"/ || {
       printf 'gwtcob: failed to copy ignored paths\n' >&2
       return 1
