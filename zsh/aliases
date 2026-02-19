@@ -80,6 +80,8 @@ alias gupbase='git pull -v --rebase --stat --ff-only upstream main:main && git p
 # docker
 alias d="docker"
 alias dc='docker compose'
+alias dce='docker compose exec'
+alias dceit='docker compose exec -it'
 alias dcr='docker compose run --rm'
 
 # kubernetes
