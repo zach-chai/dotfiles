@@ -27,7 +27,11 @@
       "Bash(cat *)",
       "Bash(grep *)",
       "Bash(chmod *)",
-      "Bash(find *)"
+      "Bash(find *)",
+      "Bash(touch *)",
+      "Bash(date *)",
+      "Bash(head *)",
+      "Bash(tail *)"
     ],
     "deny": [
       "Bash(sudo *)",

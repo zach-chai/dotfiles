@@ -9,7 +9,7 @@ Guidelines for automation and contributors working in this repo.
 > - `claude/` — Claude Code settings and instructions
 > - `codex/` — Codex agent config and permission rules
 > - `gemini/` — Gemini CLI settings
-> - `vscode-server/` — VS Code / Copilot machine settings
+> - `vscode-server/` — VS Code / Copilot machine settings (`chat.tools.terminal.autoApprove`)
 >
 > Never update one without checking whether the others need the same change.
 

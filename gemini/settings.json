@@ -1,0 +1,56 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "hasSeenIdeIntegrationNudge": true,
+  "ide": {
+    "enabled": true
+  },
+  "general": {
+    "defaultApprovalMode": "auto_edit",
+    "previewFeatures": true
+  },
+  "experimental": {
+    "skills": true
+  },
+  "toolPermissions": {
+    "alwaysAllow": [
+      "ReadFile",
+      "ListDirectory",
+      "sleep",
+      "mkdir",
+      "echo",
+      "go build",
+      "npm install",
+      "npm run",
+      "npm",
+      "pnpm",
+      "node",
+      "jq",
+      "make",
+      "pwd",
+      "time",
+      "docker compose",
+      "docker inspect",
+      "docker ps",
+      "docker network",
+      "docker version",
+      "curl",
+      "ls",
+      "cat",
+      "grep",
+      "chmod",
+      "find",
+      "touch",
+      "date",
+      "head",
+      "tail"
+    ],
+    "alwaysAsk": [
+      "docker compose exec",
+      "docker run"
+    ]
+  }
+}
