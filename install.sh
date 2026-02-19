@@ -125,7 +125,7 @@ prompt_overwrite () {
 replace_all=false
 
 # --- Templates (copy + substitute) ---
-while IFS=: read -r src tgt; do
+while IFS=: read -r src tgt <&3; do
   [ -z "$src" ] && continue
   source_path="$PWD/$src"
   [ ! -e "$source_path" ] && continue
@@ -146,10 +146,10 @@ while IFS=: read -r src tgt; do
       q ) exit 0 ;;
     esac
   fi
-done <<< "$TEMPLATE_MAP"
+done 3<<< "$TEMPLATE_MAP"
 
 # --- Symlinks ---
-while IFS=: read -r src tgt; do
+while IFS=: read -r src tgt <&3; do
   [ -z "$src" ] && continue
   source_path="$PWD/$src"
   [ ! -e "$source_path" ] && continue
@@ -163,7 +163,7 @@ while IFS=: read -r src tgt; do
   else
     prompt_overwrite "$source_path" "$tgt" do_replace
   fi
-done <<< "$SYMLINK_MAP"
+done 3<<< "$SYMLINK_MAP"
 
 # --- Install oh-my-zsh if missing ---
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
