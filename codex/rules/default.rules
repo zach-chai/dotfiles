@@ -122,3 +122,7 @@ prefix_rule(
     pattern=["tail"],
     decision="allow",
 )
+prefix_rule(
+    pattern=["tree"],
+    decision="allow",
+)

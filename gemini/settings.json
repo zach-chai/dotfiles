@@ -46,7 +46,8 @@
       "touch",
       "date",
       "head",
-      "tail"
+      "tail",
+      "tree"
     ],
     "alwaysAsk": [
       "docker compose exec",

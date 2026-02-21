@@ -31,6 +31,7 @@
         "date": true,
         "head": true,
         "tail": true,
+        "tree": true,
     },
     "chat.tools.urls.autoApprove": {},
     "claudeCode.preferredLocation": "sidebar",

@@ -78,7 +78,8 @@ alias gupdate='git fetch -v upstream main:main && git push -v origin main:main'
 alias gupbase='git pull -v --rebase --stat --ff-only upstream main:main && git push -v origin main:main'
 
 # graphite
-alias gtss='gt submit --stack'
+alias gtc='gt create'
+alias gts='gt submit --stack'
 alias gty='gt sync'
 
 # docker

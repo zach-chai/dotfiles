@@ -31,7 +31,8 @@
       "Bash(touch *)",
       "Bash(date *)",
       "Bash(head *)",
-      "Bash(tail *)"
+      "Bash(tail *)",
+      "Bash(tree *)"
     ],
     "deny": [
       "Bash(sudo *)",
