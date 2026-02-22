@@ -11,6 +11,7 @@
       "Bash(npm install *)",
       "Bash(npm run *)",
       "Bash(npm *)",
+      "Bash(npx *)",
       "Bash(pnpm *)",
       "Bash(node *)",
       "Bash(jq *)",

@@ -11,6 +11,7 @@
         "npm install": true,
         "npm run": true,
         "npm": true,
+        "npx": true,
         "pnpm": true,
         "node": true,
         "jq": true,

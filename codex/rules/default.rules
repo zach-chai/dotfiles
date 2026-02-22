@@ -31,6 +31,10 @@ prefix_rule(
     decision="allow",
 )
 prefix_rule(
+    pattern=["npx"],
+    decision="allow",
+)
+prefix_rule(
     pattern=["pnpm"],
     decision="allow",
 )
