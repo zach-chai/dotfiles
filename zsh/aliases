@@ -79,7 +79,7 @@ alias gupbase='git pull -v --rebase --stat --ff-only upstream main:main && git p
 
 # graphite
 alias gtc='gt create'
-alias gts='gt submit --stack'
+alias gts='gt submit --stack --ai'
 alias gty='gt sync'
 
 # pnpm
