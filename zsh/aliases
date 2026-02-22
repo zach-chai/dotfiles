@@ -82,6 +82,10 @@ alias gtc='gt create'
 alias gts='gt submit --stack'
 alias gty='gt sync'
 
+# pnpm
+alias p="pnpm"
+alias pi="pnpm install"
+
 # docker
 alias d="docker"
 alias dc='docker compose'
