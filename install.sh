@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# VS Code settings location differs by platform.
+if [[ "$OSTYPE" == darwin* ]]; then
+  VSCODE_SETTINGS_TARGET="$HOME/Library/Application Support/Code/User/settings.json"
+else
+  VSCODE_SETTINGS_TARGET="$HOME/.vscode-server/data/Machine/settings.json"
+fi
+
 # Symlink map: repo-relative source : absolute target (one per line).
 # Entries whose source does not exist in the repo are silently skipped.
 SYMLINK_MAP="
@@ -12,7 +19,7 @@ codex/config.toml:$HOME/.codex/config.toml
 codex/skills:$HOME/.codex/skills
 codex/rules:$HOME/.codex/rules
 codex/AGENTS.md:$HOME/.codex/AGENTS.md
-vscode-server/data/Machine/settings.json:$HOME/.vscode-server/data/Machine/settings.json
+vscode-server/data/Machine/settings.json:$VSCODE_SETTINGS_TARGET
 gemini/settings.json:$HOME/.gemini/settings.json
 "
 
