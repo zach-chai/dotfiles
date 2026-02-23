@@ -130,3 +130,11 @@ prefix_rule(
     pattern=["tree"],
     decision="allow",
 )
+prefix_rule(
+    pattern=["xargs"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["wc"],
+    decision="allow",
+)

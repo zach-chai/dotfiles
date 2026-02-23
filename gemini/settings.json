@@ -48,7 +48,9 @@
       "date",
       "head",
       "tail",
-      "tree"
+      "tree",
+      "xargs",
+      "wc"
     ],
     "alwaysAsk": [
       "docker compose exec",

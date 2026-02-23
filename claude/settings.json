@@ -33,7 +33,9 @@
       "Bash(date *)",
       "Bash(head *)",
       "Bash(tail *)",
-      "Bash(tree *)"
+      "Bash(tree *)",
+      "Bash(xargs *)",
+      "Bash(wc *)"
     ],
     "deny": [
       "Bash(sudo *)",

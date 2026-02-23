@@ -33,6 +33,8 @@
         "head": true,
         "tail": true,
         "tree": true,
+        "xargs": true,
+        "wc": true,
     },
     "chat.tools.urls.autoApprove": {},
     "claudeCode.preferredLocation": "sidebar",
