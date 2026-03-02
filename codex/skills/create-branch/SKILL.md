@@ -7,7 +7,7 @@ description: Create branches when the user asks to start new work on a branch or
 
 ## Workflow
 
-1. Run `gt create`.
+1. Run `gt create --no-interactive`.
 2. Report the created branch name back to the user.
 3. Stop after branch creation.
 
