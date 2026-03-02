@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Branch"
+  short_description: "Create branches with gt create."
+  default_prompt: "Create a new branch using the approved workflow."

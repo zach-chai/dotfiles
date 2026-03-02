@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit and Push"
+  short_description: "Commit and publish stacks."
+  default_prompt: "Commit current changes and publish the stack using the approved workflow."
