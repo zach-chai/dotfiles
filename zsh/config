@@ -4,6 +4,11 @@ export CODE_PATH="$HOME/workspace" # Workspace root used by `c`/`_c` helpers.
 if [[ $OSTYPE = darwin* ]]; then
   export PATH="/usr/local/homebrew/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/git/bin:$PATH" # Prepend macOS tool bins.
 fi
+
+if grep -qi microsoft /proc/version 2>/dev/null; then
+  export WINDOWS_HOST_IP=$(ip route show | grep default | awk '{print $3}') # WSL2 host (Windows) IP.
+fi
+
 export PATH="$PATH:$HOME/bin:$HOME/.bin:$HOME/.local/bin" # Append user bin dirs to command search path.
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH" # Manpage search path for `man`.
 
