@@ -50,7 +50,11 @@
       "tail",
       "tree",
       "xargs",
-      "wc"
+      "wc",
+      "git add",
+      "oco -y",
+      "gt submit --no-interactive",
+      "gt create"
     ],
     "alwaysAsk": [
       "docker compose exec",

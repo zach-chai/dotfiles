@@ -138,3 +138,19 @@ prefix_rule(
     pattern=["wc"],
     decision="allow",
 )
+prefix_rule(
+    pattern=["git", "add"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["oco", "-y"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["gt", "submit", "--no-interactive"],
+    decision="allow",
+)
+prefix_rule(
+    pattern=["gt", "create"],
+    decision="allow",
+)
