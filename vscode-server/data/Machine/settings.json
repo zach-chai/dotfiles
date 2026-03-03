@@ -35,6 +35,7 @@
         "tree": true,
         "xargs": true,
         "wc": true,
+        "git status": true,
         "git add": true,
         "oco -y": true,
         "gt submit --no-interactive": true,

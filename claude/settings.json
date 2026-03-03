@@ -36,6 +36,7 @@
       "Bash(tree *)",
       "Bash(xargs *)",
       "Bash(wc *)",
+      "Bash(git status *)",
       "Bash(git add *)",
       "Bash(oco -y)",
       "Bash(gt submit --no-interactive *)",

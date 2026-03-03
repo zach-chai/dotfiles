@@ -51,6 +51,7 @@
       "tree",
       "xargs",
       "wc",
+      "git status",
       "git add",
       "oco -y",
       "gt submit --no-interactive",

@@ -139,6 +139,10 @@ prefix_rule(
     decision="allow",
 )
 prefix_rule(
+    pattern=["git", "status"],
+    decision="allow",
+)
+prefix_rule(
     pattern=["git", "add"],
     decision="allow",
 )
