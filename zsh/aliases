@@ -78,9 +78,12 @@ alias gupdate='git fetch -v upstream main:main && git push -v origin main:main'
 alias gupbase='git pull -v --rebase --stat --ff-only upstream main:main && git push -v origin main:main'
 
 # graphite
-alias gtc='gt create'
+alias gtc='gt create --no-interactive --ai'
 alias gts='gt submit --no-interactive --stack --ai'
+alias gtsp='gt submit --no-interactive --stack --ai --publish'
+alias gtspm='gt submit --no-interactive --stack --ai --publish --merge-when-ready'
 alias gty='gt sync --no-interactive'
+alias gtyf='gt sync --no-interactive --force'
 
 # pnpm
 alias p="pnpm"
