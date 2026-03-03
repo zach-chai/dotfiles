@@ -11,6 +11,7 @@ fi
 # Entries whose source does not exist in the repo are silently skipped.
 SYMLINK_MAP="
 homeroot/zshrc:$HOME/.zshrc
+homeroot/opencommit:$HOME/.opencommit
 zsh:$HOME/.zsh
 claude/settings.json:$HOME/.claude/settings.json
 claude/skills:$HOME/.claude/skills
