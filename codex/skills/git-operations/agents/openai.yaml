@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git Operations"
+  short_description: "Create branches and handle stage/commit/push workflows."
+  default_prompt: "Handle git operations for the current repo using the approved workflow."
