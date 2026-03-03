@@ -39,7 +39,7 @@ chsh -s "$(which zsh)"
 
 ## Layout
 
-- `zshrc` → main entrypoint; loads oh-my-zsh and the files below.
+- `homeroot/zshrc` → main entrypoint; loads oh-my-zsh and the files below.
 - `zsh/config` → PATH, environment variables, history options, key bindings.
 - `zsh/aliases` → git, docker, kubectl, rails, misc aliases.
 - `zsh/completion` → completion + case-insensitive matching tweaks.

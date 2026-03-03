@@ -10,7 +10,7 @@ fi
 # Symlink map: repo-relative source : absolute target (one per line).
 # Entries whose source does not exist in the repo are silently skipped.
 SYMLINK_MAP="
-zshrc:$HOME/.zshrc
+homeroot/zshrc:$HOME/.zshrc
 zsh:$HOME/.zsh
 claude/settings.json:$HOME/.claude/settings.json
 claude/skills:$HOME/.claude/skills

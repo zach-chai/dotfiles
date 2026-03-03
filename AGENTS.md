@@ -29,8 +29,9 @@ patterns and guard OS-specific behavior with `OSTYPE` checks.
 ```
 .dotfiles/
 |-- install.sh                    # Symlinks dotfiles into $HOME
-|-- zshrc                         # Main zsh entrypoint
 |-- gitconfig.template            # Git config template (identity placeholders)
+|-- homeroot/                     # Files linked directly to $HOME/.<name>
+|   `-- zshrc                     # Main zsh entrypoint -> ~/.zshrc
 |-- zsh/
 |   |-- aliases                   # Aliases for git, docker, kubectl, rails, etc.
 |   |-- completion                # Zsh completion configuration
@@ -63,7 +64,8 @@ patterns and guard OS-specific behavior with `OSTYPE` checks.
 ## Key files
 
 - `install.sh` — symlinks files into `$HOME` and sets up git config templates.
-- `zshrc` — main zsh entrypoint.
+- `homeroot/` — files auto-linked to `$HOME/.<name>`; add files here to have them appear as dotfiles in `$HOME`.
+- `homeroot/zshrc` — main zsh entrypoint (`~/.zshrc`).
 - `zsh/config` — environment variables, PATH, history, key bindings.
 - `zsh/aliases` — aliases for git, docker, kubectl, rails, etc.
 - `zsh/functions/*` — helper functions loaded into zsh.
@@ -78,7 +80,7 @@ patterns and guard OS-specific behavior with `OSTYPE` checks.
 
 ## Testing
 
-- For macOS: verify `install.sh` and `zshrc` load cleanly in a fresh shell.
+- For macOS: verify `install.sh` and `homeroot/zshrc` load cleanly in a fresh shell.
 - For Linux: verify the same in a clean environment.
 - Watch for `sed -i` and other BSD/GNU differences.
 
