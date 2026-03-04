@@ -40,6 +40,7 @@
         "oco -y": true,
         "gt submit --no-interactive": true,
         "gt create": true,
+        "true": true,
     },
     "chat.tools.urls.autoApprove": {},
     "claudeCode.preferredLocation": "sidebar",

@@ -55,7 +55,8 @@
       "git add",
       "oco -y",
       "gt submit --no-interactive",
-      "gt create"
+      "gt create",
+      "true"
     ],
     "alwaysAsk": [
       "docker compose exec",
