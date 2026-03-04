@@ -81,7 +81,7 @@ alias gupbase='git pull -v --rebase --stat --ff-only upstream main:main && git p
 alias gtc='gt create --no-interactive --ai'
 alias gts='gt submit --no-interactive --stack --ai'
 alias gtsp='gt submit --no-interactive --stack --ai --publish'
-alias gtspm='gt submit --no-interactive --stack --ai --publish --merge-when-ready'
+alias gtsm='gt submit --no-interactive --stack --ai --publish --merge-when-ready'
 alias gty='gt sync --no-interactive'
 alias gtyf='gt sync --no-interactive --force'
 
