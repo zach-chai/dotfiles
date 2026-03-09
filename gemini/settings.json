@@ -56,7 +56,8 @@
       "oco -y",
       "gt submit --no-interactive",
       "gt create",
-      "true"
+      "true",
+      "cp"
     ],
     "alwaysAsk": [
       "docker compose exec",

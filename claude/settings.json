@@ -41,7 +41,8 @@
       "Bash(oco -y)",
       "Bash(gt submit --no-interactive *)",
       "Bash(gt create *)",
-      "Bash(true)"
+      "Bash(true)",
+      "Bash(cp *)"
     ],
     "deny": [
       "Bash(sudo *)",
