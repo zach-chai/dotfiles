@@ -42,7 +42,8 @@
       "Bash(gt submit --no-interactive *)",
       "Bash(gt create *)",
       "Bash(true)",
-      "Bash(cp *)"
+      "Bash(cp *)",
+      "Bash(ps *)"
     ],
     "deny": [
       "Bash(sudo *)",

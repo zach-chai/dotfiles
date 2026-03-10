@@ -166,3 +166,7 @@ prefix_rule(
     pattern=["cp"],
     decision="allow",
 )
+prefix_rule(
+    pattern=["ps"],
+    decision="allow",
+)

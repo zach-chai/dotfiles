@@ -57,7 +57,8 @@
       "gt submit --no-interactive",
       "gt create",
       "true",
-      "cp"
+      "cp",
+      "ps"
     ],
     "alwaysAsk": [
       "docker compose exec",

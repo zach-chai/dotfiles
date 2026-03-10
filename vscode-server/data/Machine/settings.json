@@ -42,6 +42,7 @@
         "gt create": true,
         "true": true,
         "cp": true,
+        "ps": true,
     },
     "chat.tools.urls.autoApprove": {},
     "claudeCode.preferredLocation": "sidebar",
