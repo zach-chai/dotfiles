@@ -2,6 +2,12 @@
 
 Guidelines for automation and contributors working in this repo.
 
+This repo contains settings for 4 agents:
+- Codex
+- Claude
+- Copilot
+- Gemini
+
 > [!IMPORTANT]
 > **CRITICAL: Keep ALL agent/editor settings in sync.**
 > Any change that affects tooling, shell behavior, paths, or configuration
