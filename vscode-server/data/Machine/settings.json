@@ -43,6 +43,7 @@
         "true": true,
         "cp": true,
         "ps": true,
+        "exit": true,
     },
     "chat.tools.urls.autoApprove": {},
     "claudeCode.preferredLocation": "sidebar",

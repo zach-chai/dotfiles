@@ -58,7 +58,8 @@
       "gt create",
       "true",
       "cp",
-      "ps"
+      "ps",
+      "exit"
     ],
     "alwaysAsk": [
       "docker compose exec",
