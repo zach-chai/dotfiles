@@ -10,7 +10,12 @@
   },
   "general": {
     "defaultApprovalMode": "auto_edit",
-    "previewFeatures": true
+    "previewFeatures": true,
+    "sessionRetention": {
+      "enabled": true,
+      "maxAge": "30d",
+      "warningAcknowledged": true
+    }
   },
   "experimental": {
     "skills": true
