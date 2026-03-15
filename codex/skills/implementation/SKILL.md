@@ -9,7 +9,7 @@ description: End-to-end code implementation workflow with multi-agent review. Us
 
 ### Step 1: Implement
 
-Read relevant files and context, then implement the requested change. Apply minimal, focused edits — do not refactor surrounding code or add unrequested improvements.
+Implement the requested changes.
 
 ### Step 2: Verify
 
@@ -33,7 +33,9 @@ For each issue raised by the reviewer, use your full context from the implementa
 
 ### Step 6: Re-verify
 
-Use the `$code-validation-fix` skill to verify and fix the changes.
+Skip this step if Step 5 produced no changes (verification was already done in Step 2).
+
+Otherwise, use the `$code-validation-fix` skill to verify and fix the changes.
 
 ### Step 7: Commit
 
@@ -51,6 +53,5 @@ Keep it brief.
 
 ## Guards
 
-- If Step 6 fails, fix the regression before committing.
-- If the sub-agent review is empty or unparseable, proceed to Step 6 without changes.
+- If the sub-agent review is empty or unparseable, skip Steps 6–7 (changes already verified).
 - Do not commit if any verification step fails.
