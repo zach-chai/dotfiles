@@ -1,0 +1,20 @@
+{
+  "banner": "never",
+  "asked_setup_terminals": [
+    "vscode"
+  ],
+  "last_logged_in_user": {
+    "host": "https://github.com",
+    "login": "zach-chai"
+  },
+  "logged_in_users": [
+    {
+      "host": "https://github.com",
+      "login": "zach-chai"
+    }
+  ],
+  "firstLaunchAt": "2026-03-11T00:00:00.000Z",
+  "model": "gpt-5.4",
+  "reasoning_effort": "high",
+  "show_reasoning": false
+}

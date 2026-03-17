@@ -22,6 +22,7 @@ codex/rules:$HOME/.codex/rules
 codex/AGENTS.md:$HOME/.codex/AGENTS.md
 vscode-server/data/Machine/settings.json:$VSCODE_SETTINGS_TARGET
 gemini/settings.json:$HOME/.gemini/settings.json
+copilot/config.json:$HOME/.copilot/config.json
 "
 
 # Template map: files that are copied and variable-substituted, not symlinked.
