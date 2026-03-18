@@ -44,7 +44,8 @@
       "Bash(true)",
       "Bash(cp *)",
       "Bash(ps *)",
-      "Bash(exit *)"
+      "Bash(exit *)",
+      "Bash(setopt *)"
     ],
     "deny": [
       "Bash(sudo *)",

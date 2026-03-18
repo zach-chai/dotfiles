@@ -67,7 +67,8 @@
       "true",
       "cp",
       "ps",
-      "exit"
+      "exit",
+      "setopt"
     ],
     "alwaysAsk": [
       "docker compose exec",

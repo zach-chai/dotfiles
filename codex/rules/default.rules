@@ -174,3 +174,7 @@ prefix_rule(
     pattern=["exit"],
     decision="allow",
 )
+prefix_rule(
+    pattern=["setopt"],
+    decision="allow",
+)
