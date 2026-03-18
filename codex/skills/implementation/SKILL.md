@@ -23,6 +23,8 @@ Use the `$git-operations` skill to stage and commit the changes.
 
 Spawn the `code-reviewer` agent (defined in `agents/code-reviewer.yaml`). It acquires the diff and returns issues independently — pass no context.
 
+Wait a **minimum of 20 minutes** for the agent to complete before proceeding. Do not move to Step 5 until the agent returns a result or the 20-minute minimum has elapsed.
+
 ### Step 5: Incorporate Feedback
 
 For each issue raised by the reviewer, use your full context from the implementation (the original request, decisions made, constraints observed) to judge its validity before acting:

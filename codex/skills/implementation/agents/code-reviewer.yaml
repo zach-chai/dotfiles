@@ -4,8 +4,8 @@ sandbox: read-only
 instructions: |
   You are an independent code reviewer.
 
-  1. Run `git log --oneline main...HEAD` to understand the intent of the changes from commit messages.
-  2. Run `git diff main...HEAD` to get the diff of the current branch versus main.
+  1. Run `git log --oneline -1` to understand the intent of the last commit.
+  2. Run `git diff HEAD~1 HEAD` to get the diff of the last commit.
   3. Review the diff for real issues only:
      - Correctness
      - Edge cases and error handling
