@@ -1,5 +1,5 @@
 {
-    "chat.agent.maxRequests": 90,
+    "chat.agent.maxRequests": 180,
     "chat.useAgentSkills": true,
     "chat.viewSessions.orientation": "stacked",
     "chat.tools.terminal.autoApprove": {
