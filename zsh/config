@@ -7,6 +7,7 @@ fi
 
 if grep -qi microsoft /proc/version 2>/dev/null; then
   export WINDOWS_HOST_IP=$(ip route show | grep default | awk '{print $3}') # WSL2 host (Windows) IP.
+  export WSL_HOSTNAME="$HOST" # WSL distro hostname; used by the `code` function.
 fi
 
 export PATH="$PATH:$HOME/bin:$HOME/.bin:$HOME/.local/bin" # Append user bin dirs to command search path.

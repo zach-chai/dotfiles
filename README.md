@@ -68,6 +68,7 @@ chsh -s "$(which zsh)"
 Default paths live in `zsh/config`:
 
 - `CODE_PATH="$HOME/workspace"`
+- `WINDOWS_HOST_IP` — auto-detected on WSL (Windows gateway IP)
 
 Override machine-specific or sensitive values in `~/.localrc` (auto-loaded).
 Per-project shell snippets can be placed in `~/.projects/*` and will be sourced
