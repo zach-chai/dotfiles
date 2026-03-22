@@ -1,0 +1,13 @@
+# Load an Ollama model into memory.
+# Usage: loadmodel [model] [keep_alive]
+#   model      - model name (default: llama3.1:8b)
+#   keep_alive - duration to keep loaded (e.g. 5m, 1h, -1 for indefinite); default: 30m
+
+local model="${1:-llama3.1:8b}"
+local keep_alive="${2:-30m}"
+
+curl "http://${WINDOWS_HOST_IP}:11434/api/generate" -d "{
+  \"model\": \"${model}\",
+  \"prompt\": \"\",
+  \"keep_alive\": \"${keep_alive}\"
+}"

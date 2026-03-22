@@ -60,6 +60,7 @@ chsh -s "$(which zsh)"
   - `cdh <dir>` → `~/<dir>`
 - Bare clone helper: `gcbare <repo-url>` → `./<repo>/.bare`
 - Worktree helper: `gwtcob <branch> [start-point]` → `../<branch>` (links ignored files)
+- Ollama helper: `loadmodel <model> [keep_alive]` → loads a model into memory via the local Ollama API
 - Quality-of-life aliases for git, docker, kubectl, rails, etc.
 - Tab completion tuned for case-insensitive matching.
 
