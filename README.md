@@ -4,6 +4,21 @@ Opinionated shell setup with zsh. Includes
 aliases, completion, helper functions, and an install script that symlinks
 everything into your home directory.
 
+## Prerequisites
+
+Install zsh if it is not already present:
+
+```sh
+# macOS
+brew install zsh
+
+# Debian / Ubuntu
+sudo apt install zsh
+
+# Fedora / RHEL
+sudo dnf install zsh
+```
+
 ## Quick start
 
 ```sh
