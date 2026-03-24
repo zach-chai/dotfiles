@@ -70,10 +70,6 @@
       "exit",
       "setopt",
       "unsetopt"
-    ],
-    "alwaysAsk": [
-      "docker compose exec",
-      "docker run"
     ]
   }
 }

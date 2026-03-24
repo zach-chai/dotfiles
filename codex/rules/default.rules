@@ -59,10 +59,6 @@ prefix_rule(
     decision="allow",
 )
 prefix_rule(
-    pattern=["docker", "compose", "exec"],
-    decision="prompt",
-)
-prefix_rule(
     pattern=["docker", "compose"],
     decision="allow",
 )
@@ -81,10 +77,6 @@ prefix_rule(
 prefix_rule(
     pattern=["docker", "version"],
     decision="allow",
-)
-prefix_rule(
-    pattern=["docker", "run"],
-    decision="prompt",
 )
 prefix_rule(
     pattern=["curl"],

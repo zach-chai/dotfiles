@@ -54,10 +54,6 @@
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)"
     ],
-    "ask": [
-      "Bash(docker compose exec *)",
-      "Bash(docker run *)"
-    ],
     "defaultMode": "acceptEdits"
   },
   "enabledPlugins": {
