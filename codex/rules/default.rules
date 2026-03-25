@@ -174,3 +174,7 @@ prefix_rule(
     pattern=["unsetopt"],
     decision="allow",
 )
+prefix_rule(
+    pattern=["command"],
+    decision="allow",
+)

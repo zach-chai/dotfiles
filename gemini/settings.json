@@ -69,7 +69,8 @@
       "ps",
       "exit",
       "setopt",
-      "unsetopt"
+      "unsetopt",
+      "command"
     ]
   }
 }

@@ -46,7 +46,8 @@
       "Bash(ps *)",
       "Bash(exit *)",
       "Bash(setopt *)",
-      "Bash(unsetopt *)"
+      "Bash(unsetopt *)",
+      "Bash(command *)"
     ],
     "deny": [
       "Bash(sudo *)",
