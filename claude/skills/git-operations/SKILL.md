@@ -34,7 +34,7 @@ Use when the user asks to create a branch and also commit current code changes.
 Use when the user asks to commit/push without requesting new branch creation.
 
 1. Stage changes with `git add` if needed.
-2. Commit with `oco -y`.
+2. Write a concise commit message and commit with `git commit -m "<message>"`.
 3. Submit/publish with `gt submit --no-interactive --stack --publish`.
 4. Report commit and submit status.
 
@@ -43,12 +43,12 @@ Use when the user asks to commit/push without requesting new branch creation.
 Use when the user asks to commit without pushing or publishing.
 
 1. Stage changes with `git add` if needed.
-2. Commit with `oco -y`.
+2. Write a concise commit message and commit with `git commit -m "<message>"`.
 3. Report commit status. Do not submit or push.
 
 ## Guards
 
 - Do not use `git checkout -b` or `git switch -c` unless the user explicitly requests plain git.
-- Do not use `git commit` or `git push` unless the user explicitly requests plain git commands.
+- Do not use `git push` unless the user explicitly requests it.
 - When branch creation with no changes is requested but no branch name is provided, stop and ask for the branch name.
 - If any command fails, stop and report the error output without fallback.
