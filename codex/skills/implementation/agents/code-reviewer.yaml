@@ -1,4 +1,5 @@
 role: worker
+model: gpt-5.4
 reasoning_effort: high
 sandbox: read-only
 instructions: |
