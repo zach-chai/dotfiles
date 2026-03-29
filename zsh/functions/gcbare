@@ -28,3 +28,5 @@ if ! git clone --bare "$url" "$dir/.bare"; then
   rmdir "$dir" 2>/dev/null
   return 1
 fi
+
+git -C "$dir/.bare" config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
