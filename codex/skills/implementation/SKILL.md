@@ -1,6 +1,6 @@
 ---
 name: implementation
-description: End-to-end code implementation workflow with multi-agent review. Use this skill when the user asks to implement, build, add, or create a feature, fix a bug, or make any code change that should be verified, reviewed, and committed. Triggers on requests like "implement X", "add feature Y", "fix bug Z", or any task describing a code change to be delivered.
+description: End-to-end code implementation workflow with multi-agent review. Only invoke when explicitly referenced with /implementation.
 ---
 
 # Implementation
