@@ -44,6 +44,7 @@
         "setopt": true,
         "unsetopt": true,
         "command": true,
+        "nocorrect": true,
     },
     "chat.tools.urls.autoApprove": {},
     "claudeCode.preferredLocation": "sidebar",

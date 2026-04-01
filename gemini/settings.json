@@ -67,7 +67,8 @@
       "exit",
       "setopt",
       "unsetopt",
-      "command"
+      "command",
+      "nocorrect"
     ]
   }
 }
