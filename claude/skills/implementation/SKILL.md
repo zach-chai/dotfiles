@@ -21,7 +21,17 @@ Use the `$git-operations` skill to stage and commit the changes.
 
 ### Step 4: Code Review (Sub-Agent)
 
-Spawn a general-purpose sub-agent with the prompt: `/review current branch against local main`
+Spawn the `code-reviewer` agent with this context filled in from your implementation:
+
+```
+**Original request:** <original request, verbatim or closely paraphrased>
+
+**Key decisions made:**
+- <decision and why>
+
+**Constraints observed:**
+- <CLAUDE.md rules, backwards-compat requirements, patterns deliberately followed>
+```
 
 Wait for the agent to return a result before proceeding to Step 5.
 

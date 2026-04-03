@@ -15,6 +15,7 @@ homeroot/opencommit:$HOME/.opencommit
 zsh:$HOME/.zsh
 claude/settings.json:$HOME/.claude/settings.json
 claude/skills:$HOME/.claude/skills
+claude/agents:$HOME/.claude/agents
 claude/CLAUDE.md:$HOME/.claude/CLAUDE.md
 codex/config.toml:$HOME/.codex/config.toml
 codex/skills:$HOME/.codex/skills
