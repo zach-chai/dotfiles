@@ -32,6 +32,8 @@ Use the `$git-operations` skill to stage and commit the changes.
 Spawn the `code-reviewer` agent with this context filled in from your implementation:
 
 ```
+**Diff target:** <if on a feature branch: "main...HEAD" (or the appropriate base branch); if changes are uncommitted: "uncommitted">
+
 **Original request:** <original request, verbatim or closely paraphrased>
 
 **Key decisions made:**
