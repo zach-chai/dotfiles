@@ -7,6 +7,14 @@ description: End-to-end code implementation workflow with multi-agent review. On
 
 ## Workflow
 
+### Step 0: Branch Guard
+
+Check the current branch with `git branch --show-current`.
+
+If the current branch is `main` or `master`, invoke `$git-operations` Scenario A to create a feature branch before writing any code. Derive the branch name from the request (for example `feat/add-user-export`). Do not proceed until the branch is created.
+
+If already on a feature branch, continue to Step 1.
+
 ### Step 1: Implement
 
 Implement the requested changes.
