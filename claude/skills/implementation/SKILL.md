@@ -15,6 +15,8 @@ If the current branch is `main` or `master`, invoke `$git-operations` Scenario A
 
 If already on a feature branch, continue to Step 1.
 
+Record the current HEAD SHA before any changes: `git rev-parse HEAD`. Store this as `BASE_SHA` — it will be used as the review diff base in Step 4 regardless of what branch you are on.
+
 ### Step 1: Implement
 
 Implement the requested changes.
@@ -32,7 +34,7 @@ Use the `$git-operations` skill to stage and commit the changes.
 Spawn the `code-reviewer` agent with this context filled in from your implementation:
 
 ```
-**Diff target:** <if on a feature branch: "main...HEAD" (or the appropriate base branch); if changes are uncommitted: "uncommitted">
+**Diff target:** <BASE_SHA..HEAD — the commits made during this implementation; if changes are uncommitted use "uncommitted">
 
 **Original request:** <original request, verbatim or closely paraphrased>
 
@@ -42,6 +44,8 @@ Spawn the `code-reviewer` agent with this context filled in from your implementa
 **Constraints observed:**
 - <CLAUDE.md rules, backwards-compat requirements, patterns deliberately followed>
 ```
+
+Using `BASE_SHA..HEAD` (the SHA recorded before implementation began) scopes the review to exactly what was changed in this task, even on stacked branches where `main...HEAD` would incorrectly include ancestor work.
 
 Wait for the agent to return a result before proceeding to Step 5.
 
