@@ -7,6 +7,16 @@ description: End-to-end code implementation workflow with multi-agent review. On
 
 ## Workflow
 
+### Step 0: Branch Guard
+
+Check the current branch with `git branch --show-current`.
+
+If the current branch is `main` or `master`, invoke `$git-operations` Scenario A to create a feature branch before writing any code. Derive the branch name from the request (for example `feat/add-user-export`). Do not proceed until the branch is created.
+
+If already on a feature branch, continue to Step 1.
+
+Record the current HEAD SHA before any changes: `git rev-parse HEAD`. Store this as `BASE_SHA` — it will be used as the review diff base in Step 4 regardless of what branch you are on.
+
 ### Step 1: Implement
 
 Implement the requested changes.
@@ -21,7 +31,21 @@ Use the `$git-operations` skill to stage and commit the changes.
 
 ### Step 4: Code Review (Sub-Agent)
 
-Spawn the `code-reviewer` agent (defined in `agents/code-reviewer.yaml`). It acquires the diff and returns issues independently — pass no context.
+Spawn the `code-reviewer` agent (defined in `agents/code-reviewer.yaml`) with this context filled in from your implementation:
+
+```
+**Diff target:** <BASE_SHA..HEAD — the commits made during this implementation; if changes are uncommitted use "uncommitted">
+
+**Original request:** <original request, verbatim or closely paraphrased>
+
+**Key decisions made:**
+- <decision and why>
+
+**Constraints observed:**
+- <AGENTS.md rules, backwards-compat requirements, patterns deliberately followed>
+```
+
+Using `BASE_SHA..HEAD` (the SHA recorded before implementation began) scopes the review to exactly what was changed in this task, even on stacked branches where `main...HEAD` would incorrectly include ancestor work.
 
 Wait for the agent to return a result before proceeding to Step 5.
 
