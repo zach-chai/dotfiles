@@ -63,16 +63,25 @@ Skip this step if Step 5 produced no changes (verification was already done in S
 
 Otherwise, use the `$code-validation-fix` skill to verify and fix the changes.
 
-### Step 7: Commit
+### Step 7: Live Verification
+
+Use the `live-verification` agent to confirm the implemented feature works correctly against the running dev stack. Pass a description of what was implemented and what to verify (the golden path and key edge cases).
+
+If the agent surfaces failures:
+- Fix the issue, then return to Step 6 to re-run code validation before continuing.
+- If the stack is unreachable and the live-verification agent was unable to restore it, investigate the error yourself, attempt a fix, and retry live verification. Only skip this step if the issue cannot be resolved — surface the error in the Step 9 summary if skipped.
+
+### Step 8: Commit
 
 Use the `$git-operations` skill to stage and commit the changes.
 
-### Step 8: Summary
+### Step 9: Summary
 
 Report to the user:
 
 - What was implemented
 - Any review issues found, and whether each was applied or skipped (with reason)
+- Live verification result (passed / failed + fixed / skipped with reason)
 - Final commit reference
 
 Keep it brief.
