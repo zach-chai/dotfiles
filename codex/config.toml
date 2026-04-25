@@ -20,3 +20,10 @@ multi_agent = true
 
 [sandbox_workspace_write]
 network_access = true
+
+[projects."/home/zach/workspace"]
+trust_level = "trusted"
+
+[projects."/home/zach/.dotfiles"]
+trust_level = "trusted"
+
