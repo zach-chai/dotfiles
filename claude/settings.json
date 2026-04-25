@@ -61,5 +61,6 @@
   },
   "effortLevel": "high",
   "autoMemoryEnabled": false,
-  "autoDreamEnabled": false
+  "autoDreamEnabled": false,
+  "model": "opus[1m]"
 }
