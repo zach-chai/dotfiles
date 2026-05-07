@@ -105,6 +105,7 @@ alias hdelall="helm ls --all --short | xargs -L1 helm delete"
 
 # other
 alias sshkg='ssh-keygen -b 4096'
+alias ghc='gh copilot'
 alias weather="curl 'wttr.in/~Ottawa?2\&m'"
 
 # commands starting with % for pasting from web
