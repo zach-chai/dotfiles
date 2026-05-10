@@ -21,6 +21,8 @@ codex/config.toml:$HOME/.codex/config.toml
 codex/skills:$HOME/.codex/skills
 codex/rules:$HOME/.codex/rules
 codex/AGENTS.md:$HOME/.codex/AGENTS.md
+copilot/agents:$HOME/.copilot/agents
+copilot/skills:$HOME/.copilot/skills
 vscode-server/data/Machine/settings.json:$VSCODE_SETTINGS_TARGET
 gemini/settings.json:$HOME/.gemini/settings.json
 copilot/config.json:$HOME/.copilot/config.json

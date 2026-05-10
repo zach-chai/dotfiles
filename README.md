@@ -48,6 +48,8 @@ chsh -s "$(which zsh)"
 - Links `codex/skills` to `~/.codex/skills` if present.
 - Links `codex/rules` to `~/.codex/rules` if present.
 - Links `codex/AGENTS.md` to `~/.codex/AGENTS.md` if present.
+- Links `copilot/agents` to `~/.copilot/agents` if present.
+- Links `copilot/skills` to `~/.copilot/skills` if present.
 - Links `vscode-server/data/Machine/settings.json` to
   `~/.vscode-server/data/Machine/settings.json` if present.
 - Installs oh-my-zsh if it is missing.
@@ -65,6 +67,8 @@ chsh -s "$(which zsh)"
 - `codex/skills/` → Codex skills.
 - `codex/rules/` → Codex rules.
 - `codex/AGENTS.md` → generic agent instructions synced to `~/.codex/AGENTS.md`.
+- `copilot/agents/` → Copilot agents.
+- `copilot/skills/` → Copilot skills.
 - `vscode-server/data/Machine/settings.json` → VS Code server machine settings.
 
 ## Key features
