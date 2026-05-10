@@ -31,7 +31,7 @@ If the agent surfaces failures:
 
 ### Step 3: Code Validation Fix
 
-Use the `$code-validation-fix` skill to verify and fix the changes.
+Launch the `test-runner` agent to verify and fix the changes.
 
 ### Step 4: Commit
 
@@ -69,7 +69,7 @@ For each issue raised by the reviewer, use your full context from the implementa
 
 Skip this step if Step 6 produced no changes (validation was already done in Step 3).
 
-Otherwise, use the `$code-validation-fix` skill to verify and fix the changes.
+Otherwise, launch the `test-runner` agent to verify and fix the changes.
 
 ### Step 8: Commit
 
