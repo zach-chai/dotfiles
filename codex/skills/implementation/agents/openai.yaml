@@ -1,7 +1,0 @@
-interface:
-  display_name: "Implementation"
-  short_description: "Implement, review, and commit code changes."
-  default_prompt: "Use $implementation to implement [describe feature or fix]."
-
-policy:
-  allow_implicit_invocation: false

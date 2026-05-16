@@ -23,11 +23,11 @@ Implement the requested changes.
 
 ### Step 2: Live Verification
 
-Use the `live-verification` agent to confirm the implemented feature works correctly against the running dev stack. Pass a description of what was implemented and what to verify (the golden path and key edge cases).
+Use the `live-verifier` agent to confirm the implemented feature works correctly against the running dev stack. Pass a description of what was implemented and what to verify (the golden path and key edge cases).
 
 If the agent surfaces failures:
 - Fix the issue, then re-run live verification.
-- If the stack is unreachable and the live-verification agent was unable to restore it, investigate the error yourself, attempt a fix, and retry live verification. Only skip this step if the issue cannot be resolved — surface the error in the Step 9 summary if skipped.
+- If the stack is unreachable and the live-verifier agent was unable to restore it, investigate the error yourself, attempt a fix, and retry live verification. Only skip this step if the issue cannot be resolved — surface the error in the Step 9 summary if skipped.
 
 ### Step 3: Code Validation Fix
 
