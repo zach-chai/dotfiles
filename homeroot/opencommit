@@ -1,5 +1,5 @@
 OCO_ONE_LINE_COMMIT=true
-OCO_MODEL=gemini-3.1-flash-lite-preview
+OCO_MODEL=gemma-4-26b-a4b-it
 OCO_API_URL=https://generativelanguage.googleapis.com/v1beta/openai/chat
 OCO_API_KEY=<from-ai-studio>
 OCO_API_CUSTOM_HEADERS=undefined
