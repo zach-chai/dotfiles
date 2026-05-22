@@ -1,6 +1,7 @@
 ---
 name: implementation
 description: End-to-end code implementation workflow with multi-agent review. Only invoke when explicitly referenced with /implementation.
+disable-model-invocation: true
 ---
 
 # Implementation
