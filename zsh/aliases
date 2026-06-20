@@ -87,7 +87,6 @@ alias gtyf='gt sync --no-interactive --force'
 
 # pnpm
 alias p="pnpm"
-alias pi="pnpm install"
 
 # docker
 alias d="docker"
